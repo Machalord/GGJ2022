@@ -158,10 +158,19 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 253026594100166,
+							"sid": 725387096308228,
 							"parameters": {
 								"variable": "currentDifficulty",
 								"value": "1"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 539307713476856,
+							"parameters": {
+								"variable": "GroundSpeed",
+								"value": "4"
 							}
 						},
 						{
@@ -507,6 +516,15 @@
 									"parameters": {
 										"variable": "currentDifficulty",
 										"value": "currentDifficulty+1"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 530477923158994,
+									"parameters": {
+										"variable": "GroundSpeed",
+										"value": "max(4,currentDifficulty+1)"
 									}
 								}
 							],
@@ -1266,7 +1284,6 @@
 											"id": "is-overlapping-another-object",
 											"objectClass": "PlayerCollision",
 											"sid": 977215645560367,
-											"disabled": true,
 											"parameters": {
 												"object": "Ground"
 											},
@@ -1303,6 +1320,27 @@
 											"sid": 163217289889399
 										}
 									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 608280518991143
+										}
+									],
+									"actions": [
+										{
+											"id": "set-z-elevation",
+											"objectClass": "PlayerCollision",
+											"sid": 328930315195892,
+											"parameters": {
+												"z": "0"
+											}
+										}
+									],
+									"sid": 666739314169769
 								}
 							]
 						},
@@ -1519,83 +1557,100 @@
 													}
 												}
 											],
-											"actions": [
+											"actions": [],
+											"sid": 589840087456350,
+											"children": [
 												{
-													"id": "create-object",
-													"objectClass": "System",
-													"sid": 672073874315871,
-													"parameters": {
-														"object-to-create": "Dust",
-														"layer": "\"World\"",
-														"x": "PlayerCollision.X",
-														"y": "PlayerCollision.Y + random(-0.5, 0.5) + loopindex(\"X\") * 6",
-														"create-hierarchy": false
-													}
-												},
-												{
-													"id": "set-z-elevation",
-													"objectClass": "Dust",
-													"sid": 587774790775709,
-													"parameters": {
-														"z": "random(0, 1)"
-													}
-												},
-												{
-													"id": "set-angle-of-motion",
-													"objectClass": "Dust",
-													"sid": 405958129839230,
-													"behaviorType": "Bullet",
-													"parameters": {
-														"angle": "180"
-													}
-												},
-												{
-													"id": "set-angle",
-													"objectClass": "Dust",
-													"sid": 342595938144981,
-													"parameters": {
-														"angle": "random(0, 360)"
-													}
-												},
-												{
-													"type": "comment",
-													"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
-												},
-												{
-													"id": "tween-one-property",
-													"objectClass": "Dust",
-													"sid": 936573042997797,
-													"behaviorType": "Tween",
-													"parameters": {
-														"tags": "\"Ascend\"",
-														"property": "offsetZElevation",
-														"end-value": "random(8, 16)",
-														"time": "random(0.35, 0.5)",
-														"ease": "easeinsine",
-														"destroy-on-complete": "no",
-														"loop": "yes",
-														"ping-pong": "no"
-													}
-												},
-												{
-													"id": "tween-two-properties",
-													"objectClass": "Dust",
-													"sid": 793469580447979,
-													"behaviorType": "Tween",
-													"parameters": {
-														"tags": "\"SelfDestroy\"",
-														"property": "size",
-														"end-x": "0",
-														"end-y": "0",
-														"time": "0.25",
-														"ease": "easeinsine",
-														"destroy-on-complete": "yes",
-														"loop": "no",
-														"ping-pong": "no"
-													}
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for-each",
+															"objectClass": "System",
+															"sid": 751746020861754,
+															"parameters": {
+																"object": "PlayerCollision"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 150284339035521,
+															"parameters": {
+																"object-to-create": "Dust",
+																"layer": "\"World\"",
+																"x": "PlayerCollision.X",
+																"y": "PlayerCollision.Y + random(-0.5, 0.5) + loopindex(\"X\") * (PlayerCollision.Height-10)/2",
+																"create-hierarchy": false
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Dust",
+															"sid": 400486595977308,
+															"parameters": {
+																"z": "random(0, 1)"
+															}
+														},
+														{
+															"id": "set-angle-of-motion",
+															"objectClass": "Dust",
+															"sid": 535288566158888,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"angle": "180"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "Dust",
+															"sid": 766860812432741,
+															"parameters": {
+																"angle": "random(0, 360)"
+															}
+														},
+														{
+															"type": "comment",
+															"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
+														},
+														{
+															"id": "tween-one-property",
+															"objectClass": "Dust",
+															"sid": 535602243179169,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"Ascend\"",
+																"property": "offsetZElevation",
+																"end-value": "random(8, 16)",
+																"time": "random(0.35, 0.5)",
+																"ease": "easeinsine",
+																"destroy-on-complete": "no",
+																"loop": "yes",
+																"ping-pong": "no"
+															}
+														},
+														{
+															"id": "tween-two-properties",
+															"objectClass": "Dust",
+															"sid": 663630562872875,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"SelfDestroy\"",
+																"property": "size",
+																"end-x": "0",
+																"end-y": "0",
+																"time": "0.25",
+																"ease": "easeinsine",
+																"destroy-on-complete": "yes",
+																"loop": "no",
+																"ping-pong": "no"
+															}
+														}
+													],
+													"sid": 150378367539844
 												}
-											],
-											"sid": 589840087456350
+											]
 										}
 									]
 								}
@@ -2248,7 +2303,7 @@
 			"eventType": "variable",
 			"name": "MINLENGTH",
 			"type": "number",
-			"initialValue": "32",
+			"initialValue": "48",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": true,
@@ -2263,6 +2318,16 @@
 			"isStatic": false,
 			"isConstant": true,
 			"sid": 801598510839084
+		},
+		{
+			"eventType": "variable",
+			"name": "TIMEBETWEENPARED",
+			"type": "number",
+			"initialValue": "0.5",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 400373542176997
 		},
 		{
 			"eventType": "group",
@@ -2604,52 +2669,6 @@
 														}
 													],
 													"sid": 360763253761917
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 402749418013292
-														},
-														{
-															"id": "compare-eventvar",
-															"objectClass": "System",
-															"sid": 945209989156495,
-															"parameters": {
-																"variable": "objToCreate",
-																"comparison": 0,
-																"value": "\"Pared\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "add-child",
-															"objectClass": "Ground",
-															"sid": 212036724212650,
-															"parameters": {
-																"child": "Pared",
-																"transform-x": true,
-																"transform-y": true,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-z-elevation": true,
-																"destroy-with-parent": true
-															}
-														},
-														{
-															"id": "set-z-elevation",
-															"objectClass": "Pared",
-															"sid": 896936160088410,
-															"parameters": {
-																"z": "Ground.ZElevation + Ground.ZHeight"
-															}
-														}
-													],
-													"sid": 470150959977369
 												}
 											]
 										}
@@ -2684,7 +2703,6 @@
 													"id": "for",
 													"objectClass": "System",
 													"sid": 216823399871596,
-													"disabled": true,
 													"parameters": {
 														"name": "\"Spikes\"",
 														"start-index": "0",
@@ -2696,27 +2714,41 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 416282937875997,
+													"sid": 235925152628150,
 													"parameters": {
 														"variable": "objToCreate",
 														"value": "choose(\"Spike\",\"Spike\",\"Spike\",\"Pared\")"
-													}
-												},
-												{
-													"id": "create-object-by-name",
-													"objectClass": "System",
-													"sid": 689778256519616,
-													"parameters": {
-														"object-name": "objToCreate",
-														"layer": "\"World\"",
-														"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
-														"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
-														"create-hierarchy": false
 													}
 												}
 											],
 											"sid": 219177729453662,
 											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-timer-running",
+															"objectClass": "GameManager",
+															"sid": 874073659620945,
+															"behaviorType": "Timer",
+															"parameters": {
+																"tag": "\"noPared\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 990442858772154,
+															"parameters": {
+																"variable": "objToCreate",
+																"value": "\"Spike\""
+															}
+														}
+													],
+													"sid": 529986692374403
+												},
 												{
 													"eventType": "block",
 													"conditions": [
@@ -2732,6 +2764,18 @@
 														}
 													],
 													"actions": [
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 737134415361351,
+															"parameters": {
+																"object-to-create": "Spike",
+																"layer": "\"World\"",
+																"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
+																"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
+																"create-hierarchy": false
+															}
+														},
 														{
 															"id": "add-child",
 															"objectClass": "Ground",
@@ -2787,6 +2831,18 @@
 													],
 													"actions": [
 														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 630189010951881,
+															"parameters": {
+																"object-to-create": "Pared",
+																"layer": "\"World\"",
+																"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
+																"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
+																"create-hierarchy": false
+															}
+														},
+														{
 															"id": "add-child",
 															"objectClass": "Ground",
 															"sid": 206250692639334,
@@ -2808,146 +2864,20 @@
 															"parameters": {
 																"z": "Ground.ZElevation + Ground.ZHeight"
 															}
+														},
+														{
+															"id": "start-timer",
+															"objectClass": "GameManager",
+															"sid": 899547455354894,
+															"behaviorType": "Timer",
+															"parameters": {
+																"duration": "TIMEBETWEENPARED",
+																"type": "once",
+																"tag": "\"noPared\""
+															}
 														}
 													],
 													"sid": 732508593211480
-												}
-											]
-										},
-										{
-											"eventType": "block",
-											"conditions": [
-												{
-													"id": "for",
-													"objectClass": "System",
-													"sid": 803517158104907,
-													"disabled": true,
-													"parameters": {
-														"name": "\"Spikes\"",
-														"start-index": "0",
-														"end-index": "1"
-													}
-												}
-											],
-											"actions": [
-												{
-													"id": "set-eventvar-value",
-													"objectClass": "System",
-													"sid": 979037693487019,
-													"parameters": {
-														"variable": "objToCreate",
-														"value": "choose(\"Spike\",\"Spike\",\"Spike\",\"Pared\")"
-													}
-												},
-												{
-													"id": "create-object-by-name",
-													"objectClass": "System",
-													"sid": 766843672002115,
-													"parameters": {
-														"object-name": "objToCreate",
-														"layer": "\"World\"",
-														"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
-														"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
-														"create-hierarchy": false
-													}
-												}
-											],
-											"sid": 468913161911282,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "compare-eventvar",
-															"objectClass": "System",
-															"sid": 556043587423429,
-															"parameters": {
-																"variable": "objToCreate",
-																"comparison": 0,
-																"value": "\"Spike\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "add-child",
-															"objectClass": "Ground",
-															"sid": 839675981109893,
-															"parameters": {
-																"child": "Spike",
-																"transform-x": true,
-																"transform-y": true,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-z-elevation": true,
-																"destroy-with-parent": true
-															}
-														},
-														{
-															"id": "set-z-elevation",
-															"objectClass": "Spike",
-															"sid": 254306621781430,
-															"parameters": {
-																"z": "Ground.ZElevation + Ground.ZHeight"
-															}
-														},
-														{
-															"id": "set-angle",
-															"objectClass": "Spike",
-															"sid": 498461372128948,
-															"parameters": {
-																"angle": "random(-5, 5)"
-															}
-														}
-													],
-													"sid": 823268780848121
-												},
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "else",
-															"objectClass": "System",
-															"sid": 455813634101695
-														},
-														{
-															"id": "compare-eventvar",
-															"objectClass": "System",
-															"sid": 514586087133744,
-															"parameters": {
-																"variable": "objToCreate",
-																"comparison": 0,
-																"value": "\"Pared\""
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "add-child",
-															"objectClass": "Ground",
-															"sid": 454818569925086,
-															"parameters": {
-																"child": "Pared",
-																"transform-x": true,
-																"transform-y": true,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-z-elevation": true,
-																"destroy-with-parent": true
-															}
-														},
-														{
-															"id": "set-z-elevation",
-															"objectClass": "Pared",
-															"sid": 102710411479174,
-															"parameters": {
-																"z": "Ground.ZElevation + Ground.ZHeight"
-															}
-														}
-													],
-													"sid": 588032067495020
 												}
 											]
 										}
@@ -2998,22 +2928,36 @@
 														"variable": "objToCreate",
 														"value": "choose(\"Spike\",\"Pared\")"
 													}
-												},
-												{
-													"id": "create-object-by-name",
-													"objectClass": "System",
-													"sid": 111496042074986,
-													"parameters": {
-														"object-name": "objToCreate",
-														"layer": "\"World\"",
-														"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
-														"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
-														"create-hierarchy": false
-													}
 												}
 											],
 											"sid": 964302321949345,
 											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "is-timer-running",
+															"objectClass": "GameManager",
+															"sid": 590933603418517,
+															"behaviorType": "Timer",
+															"parameters": {
+																"tag": "\"noPared\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 237977432951089,
+															"parameters": {
+																"variable": "objToCreate",
+																"value": "\"Spike\""
+															}
+														}
+													],
+													"sid": 139638794564843
+												},
 												{
 													"eventType": "block",
 													"conditions": [
@@ -3029,6 +2973,18 @@
 														}
 													],
 													"actions": [
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 243731302682410,
+															"parameters": {
+																"object-to-create": "Spike",
+																"layer": "\"World\"",
+																"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
+																"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
+																"create-hierarchy": false
+															}
+														},
 														{
 															"id": "add-child",
 															"objectClass": "Ground",
@@ -3084,6 +3040,18 @@
 													],
 													"actions": [
 														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 532716250305386,
+															"parameters": {
+																"object-to-create": "Pared",
+																"layer": "\"World\"",
+																"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
+																"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
+																"create-hierarchy": false
+															}
+														},
+														{
 															"id": "add-child",
 															"objectClass": "Ground",
 															"sid": 639302137834571,
@@ -3104,6 +3072,17 @@
 															"sid": 267497335857019,
 															"parameters": {
 																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														},
+														{
+															"id": "start-timer",
+															"objectClass": "GameManager",
+															"sid": 584999814196324,
+															"behaviorType": "Timer",
+															"parameters": {
+																"duration": "TIMEBETWEENPARED",
+																"type": "once",
+																"tag": "\"noPared\""
 															}
 														}
 													],
@@ -3202,16 +3181,7 @@
 							"sid": 169348559375666
 						}
 					],
-					"actions": [
-						{
-							"callFunction": "CreateGround",
-							"sid": 644465198374744,
-							"disabled": true,
-							"parameters": [
-								"\"\""
-							]
-						}
-					],
+					"actions": [],
 					"sid": 693636341850785,
 					"children": [
 						{
@@ -3781,6 +3751,12 @@
 										"y": "PlayerBillboard.Y",
 										"create-hierarchy": false
 									}
+								},
+								{
+									"id": "stop-all-tweens",
+									"objectClass": "PlayerCollision",
+									"sid": 517844324025090,
+									"behaviorType": "Tween"
 								},
 								{
 									"id": "destroy",
