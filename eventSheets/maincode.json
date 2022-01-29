@@ -99,7 +99,7 @@
 			"eventType": "variable",
 			"name": "timeToDifficultyIncrease",
 			"type": "number",
-			"initialValue": "10",
+			"initialValue": "25",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": true,
@@ -2038,69 +2038,71 @@
 									"sid": 897188007853909
 								}
 							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 101537484575012,
+							"disabled": true
 						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "PlayerCollision",
+							"sid": 522171408078382,
+							"disabled": true,
+							"parameters": {
+								"object": "Ground"
+							}
+						},
+						{
+							"id": "is-overlapping-another-object",
+							"objectClass": "PlayerCollision",
+							"sid": 863128796892394,
+							"parameters": {
+								"object": "Pared"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "stop-all-tweens",
+							"objectClass": "PlayerCollision",
+							"sid": 844314300020355,
+							"behaviorType": "Tween"
+						}
+					],
+					"sid": 388936128268078,
+					"children": [
 						{
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "else",
+									"id": "pick-by-comparison",
 									"objectClass": "System",
-									"sid": 499332302458572
-								},
-								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "PlayerCollision",
-									"sid": 360154209268716,
+									"sid": 571126967881135,
 									"parameters": {
-										"object": "Ground"
-									}
-								},
-								{
-									"id": "is-overlapping-another-object",
-									"objectClass": "PlayerCollision",
-									"sid": 583345596419609,
-									"parameters": {
-										"object": "Pared"
+										"object": "PlayerBillboard",
+										"expression": "PlayerBillboard.type",
+										"comparison": 0,
+										"value": "PlayerCollision.type"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "stop-all-tweens",
-									"objectClass": "PlayerCollision",
-									"sid": 670282445195751,
-									"behaviorType": "Tween"
+									"callFunction": "PlayerDie",
+									"sid": 162988038359737,
+									"parameters": [
+										"PlayerBillboard.UID"
+									]
 								}
 							],
-							"sid": 261465227829738,
-							"children": [
-								{
-									"eventType": "block",
-									"conditions": [
-										{
-											"id": "pick-by-comparison",
-											"objectClass": "System",
-											"sid": 473755989582566,
-											"parameters": {
-												"object": "PlayerBillboard",
-												"expression": "PlayerBillboard.type",
-												"comparison": 0,
-												"value": "PlayerCollision.type"
-											}
-										}
-									],
-									"actions": [
-										{
-											"callFunction": "PlayerDie",
-											"sid": 735154880063480,
-											"parameters": [
-												"PlayerBillboard.UID"
-											]
-										}
-									],
-									"sid": 499148680698205
-								}
-							]
+							"sid": 693126412058912
 						}
 					]
 				},
@@ -2533,10 +2535,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 734098040866427,
+													"sid": 932090495984089,
 													"parameters": {
 														"variable": "objToCreate",
-														"value": "choose(\"Spike\",\"Pared\")"
+														"value": "\"Spike\""
 													}
 												},
 												{
@@ -2694,10 +2696,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 500328704865107,
+													"sid": 416282937875997,
 													"parameters": {
 														"variable": "objToCreate",
-														"value": "choose(\"Spike\",\"Pared\")"
+														"value": "choose(\"Spike\",\"Spike\",\"Spike\",\"Pared\")"
 													}
 												},
 												{
@@ -2831,10 +2833,10 @@
 												{
 													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 216064374084394,
+													"sid": 979037693487019,
 													"parameters": {
 														"variable": "objToCreate",
-														"value": "choose(\"Spike\",\"Pared\")"
+														"value": "choose(\"Spike\",\"Spike\",\"Spike\",\"Pared\")"
 													}
 												},
 												{

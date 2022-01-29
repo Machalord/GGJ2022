@@ -213,9 +213,9 @@
 					"behaviors": {},
 					"world": {
 						"x": 60,
-						"y": 19,
+						"y": 15,
 						"width": 28,
-						"height": 57,
+						"height": 45,
 						"originX": 0.5,
 						"originY": 0.3333333333333333,
 						"color": [
