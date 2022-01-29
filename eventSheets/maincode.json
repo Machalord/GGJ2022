@@ -126,6 +126,16 @@
 			"sid": 410345889164026
 		},
 		{
+			"eventType": "variable",
+			"name": "groundSpeedBASE",
+			"type": "number",
+			"initialValue": "6",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": true,
+			"sid": 217302119783373
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Camera",
@@ -167,10 +177,10 @@
 						{
 							"id": "set-eventvar-value",
 							"objectClass": "System",
-							"sid": 539307713476856,
+							"sid": 792524251769184,
 							"parameters": {
 								"variable": "GroundSpeed",
-								"value": "4"
+								"value": "groundSpeedBASE"
 							}
 						},
 						{
@@ -219,6 +229,34 @@
 							"parameters": [
 								"\"right\""
 							]
+						},
+						{
+							"id": "stop",
+							"objectClass": "Audio",
+							"sid": 952992742757932,
+							"parameters": {
+								"tag": "\"music\""
+							}
+						},
+						{
+							"id": "stop",
+							"objectClass": "Audio",
+							"sid": 261499205914987,
+							"parameters": {
+								"tag": "\"musicFast\""
+							}
+						},
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 965986054078155,
+							"parameters": {
+								"folder": "music",
+								"audio-file-name": "choose(\"music1\",\"music3\")",
+								"loop": "looping",
+								"volume": "-18",
+								"tag-optional": "\"music\""
+							}
 						}
 					],
 					"sid": 508562661280596,
@@ -521,14 +559,45 @@
 								{
 									"id": "set-eventvar-value",
 									"objectClass": "System",
-									"sid": 530477923158994,
+									"sid": 940378839703094,
 									"parameters": {
 										"variable": "GroundSpeed",
-										"value": "max(4,currentDifficulty+1)"
+										"value": "max(groundSpeedBASE,currentDifficulty+1)"
 									}
 								}
 							],
-							"sid": 890096404854810
+							"sid": 890096404854810,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 712338939049083,
+											"parameters": {
+												"variable": "currentDifficulty",
+												"comparison": 0,
+												"value": "4"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "fade-volume",
+											"objectClass": "Audio",
+											"sid": 584663872896977,
+											"parameters": {
+												"tag": "\"music\"",
+												"db": "-100",
+												"duration": "0.5",
+												"ending": "stop"
+											}
+										}
+									],
+									"sid": 484359168984858
+								}
+							]
 						}
 					]
 				},
@@ -616,6 +685,45 @@
 						}
 					],
 					"sid": 916998716725399
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-fade-ended",
+							"objectClass": "Audio",
+							"sid": 452740243928513,
+							"parameters": {
+								"tag": "\"music\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play-by-name",
+							"objectClass": "Audio",
+							"sid": 482032521439487,
+							"parameters": {
+								"folder": "music",
+								"audio-file-name": "\"musicFast\"",
+								"loop": "looping",
+								"volume": "-100",
+								"tag-optional": "\"musicFast\""
+							}
+						},
+						{
+							"id": "fade-volume",
+							"objectClass": "Audio",
+							"sid": 587992369984583,
+							"parameters": {
+								"tag": "\"musicFast\"",
+								"db": "-18",
+								"duration": "0.5",
+								"ending": "keep-playing"
+							}
+						}
+					],
+					"sid": 314932246031009
 				}
 			],
 			"sid": 697435207047720
@@ -1056,7 +1164,19 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 571486947980827,
+							"parameters": {
+								"audio-file": "jump",
+								"loop": "not-looping",
+								"volume": "-10",
+								"tag-optional": "\"jump\""
+							}
+						}
+					],
 					"sid": 612114602595076,
 					"children": [
 						{
@@ -1259,7 +1379,19 @@
 							}
 						}
 					],
-					"actions": [],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 653319325714571,
+							"parameters": {
+								"audio-file": "land",
+								"loop": "not-looping",
+								"volume": "-10",
+								"tag-optional": "\"\""
+							}
+						}
+					],
 					"sid": 396701196294983,
 					"children": [
 						{
@@ -1679,7 +1811,19 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 617535194055310,
+							"parameters": {
+								"audio-file": "turn",
+								"loop": "not-looping",
+								"volume": "-5",
+								"tag-optional": "\"\""
+							}
+						}
+					],
 					"sid": 160039831058024,
 					"children": [
 						{
@@ -2237,7 +2381,7 @@
 			"eventType": "variable",
 			"name": "GroundSpeed",
 			"type": "number",
-			"initialValue": "4",
+			"initialValue": "6",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,

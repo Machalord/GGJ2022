@@ -95,6 +95,14 @@
 			"bundled": false
 		},
 		{
+			"type": "plugin",
+			"id": "Audio",
+			"name": "Audio",
+			"author": "Scirra",
+			"version": "r280",
+			"bundled": false
+		},
+		{
 			"type": "behavior",
 			"id": "Tween",
 			"name": "Tween",
@@ -176,7 +184,8 @@
 			"LocalStorage",
 			"ParticleExplosion",
 			"GameManager",
-			"Pared"
+			"Pared",
+			"Audio"
 		],
 		"subfolders": []
 	},
@@ -205,11 +214,48 @@
 			"subfolders": []
 		},
 		"sound": {
-			"items": [],
+			"items": [
+				{
+					"name": "jump.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 833431522299453
+				},
+				{
+					"name": "land3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 854480105361630
+				},
+				{
+					"name": "turn.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 297033550478581
+				},
+				{
+					"name": "land.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 784964993052043
+				}
+			],
 			"subfolders": []
 		},
 		"music": {
-			"items": [],
+			"items": [
+				{
+					"name": "music1.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 829548784428679
+				},
+				{
+					"name": "music3.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 677800377571259
+				},
+				{
+					"name": "musicFast.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 586167363603652
+				}
+			],
 			"subfolders": []
 		},
 		"video": {
