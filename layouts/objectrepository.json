@@ -189,10 +189,10 @@
 					}
 				},
 				{
-					"type": "3DShape3",
+					"type": "Pared",
 					"properties": {
 						"shape": "box",
-						"z-height": 15,
+						"z-height": 50,
 						"initially-visible": true,
 						"face-back": false,
 						"face-front": true,

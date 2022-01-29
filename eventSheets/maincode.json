@@ -2038,6 +2038,69 @@
 									"sid": 897188007853909
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 499332302458572
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "PlayerCollision",
+									"sid": 360154209268716,
+									"parameters": {
+										"object": "Ground"
+									}
+								},
+								{
+									"id": "is-overlapping-another-object",
+									"objectClass": "PlayerCollision",
+									"sid": 583345596419609,
+									"parameters": {
+										"object": "Pared"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "stop-all-tweens",
+									"objectClass": "PlayerCollision",
+									"sid": 670282445195751,
+									"behaviorType": "Tween"
+								}
+							],
+							"sid": 261465227829738,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 473755989582566,
+											"parameters": {
+												"object": "PlayerBillboard",
+												"expression": "PlayerBillboard.type",
+												"comparison": 0,
+												"value": "PlayerCollision.type"
+											}
+										}
+									],
+									"actions": [
+										{
+											"callFunction": "PlayerDie",
+											"sid": 735154880063480,
+											"parameters": [
+												"PlayerBillboard.UID"
+											]
+										}
+									],
+									"sid": 499148680698205
+								}
+							]
 						}
 					]
 				},
@@ -2239,6 +2302,16 @@
 							"isStatic": false,
 							"isConstant": false,
 							"sid": 568473560527817
+						},
+						{
+							"eventType": "variable",
+							"name": "objToCreate",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 205784857442065
 						},
 						{
 							"eventType": "block",
@@ -2458,50 +2531,125 @@
 											],
 											"actions": [
 												{
-													"id": "create-object",
+													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 853403354750738,
+													"sid": 734098040866427,
 													"parameters": {
-														"object-to-create": "Spike",
+														"variable": "objToCreate",
+														"value": "choose(\"Spike\",\"Pared\")"
+													}
+												},
+												{
+													"id": "create-object-by-name",
+													"objectClass": "System",
+													"sid": 192025163531411,
+													"parameters": {
+														"object-name": "objToCreate",
 														"layer": "\"World\"",
 														"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
 														"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
 														"create-hierarchy": false
 													}
-												},
-												{
-													"id": "set-z-elevation",
-													"objectClass": "Spike",
-													"sid": 608896077035616,
-													"parameters": {
-														"z": "Ground.ZElevation + Ground.ZHeight"
-													}
-												},
-												{
-													"id": "set-angle",
-													"objectClass": "Spike",
-													"sid": 460035115047059,
-													"parameters": {
-														"angle": "random(-5, 5)"
-													}
-												},
-												{
-													"id": "add-child",
-													"objectClass": "Ground",
-													"sid": 447450320534224,
-													"parameters": {
-														"child": "Spike",
-														"transform-x": true,
-														"transform-y": true,
-														"transform-w": false,
-														"transform-h": false,
-														"transform-a": false,
-														"transform-z-elevation": true,
-														"destroy-with-parent": true
-													}
 												}
 											],
-											"sid": 674907203164389
+											"sid": 674907203164389,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 454184536490693,
+															"parameters": {
+																"variable": "objToCreate",
+																"comparison": 0,
+																"value": "\"Spike\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 792709717203006,
+															"parameters": {
+																"child": "Spike",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Spike",
+															"sid": 235564356715209,
+															"parameters": {
+																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "Spike",
+															"sid": 136102192021924,
+															"parameters": {
+																"angle": "random(-5, 5)"
+															}
+														}
+													],
+													"sid": 360763253761917
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 402749418013292
+														},
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 945209989156495,
+															"parameters": {
+																"variable": "objToCreate",
+																"comparison": 0,
+																"value": "\"Pared\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 212036724212650,
+															"parameters": {
+																"child": "Pared",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Pared",
+															"sid": 896936160088410,
+															"parameters": {
+																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														}
+													],
+													"sid": 470150959977369
+												}
+											]
 										}
 									]
 								},
@@ -2544,93 +2692,262 @@
 											],
 											"actions": [
 												{
-													"id": "create-object",
+													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 657913389351249,
+													"sid": 500328704865107,
 													"parameters": {
-														"object-to-create": "Spike",
+														"variable": "objToCreate",
+														"value": "choose(\"Spike\",\"Pared\")"
+													}
+												},
+												{
+													"id": "create-object-by-name",
+													"objectClass": "System",
+													"sid": 689778256519616,
+													"parameters": {
+														"object-name": "objToCreate",
 														"layer": "\"World\"",
 														"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
 														"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
 														"create-hierarchy": false
-													}
-												},
-												{
-													"id": "set-z-elevation",
-													"objectClass": "Spike",
-													"sid": 576971891246556,
-													"parameters": {
-														"z": "Ground.ZElevation + Ground.ZHeight"
-													}
-												},
-												{
-													"id": "set-angle",
-													"objectClass": "Spike",
-													"sid": 693305080993301,
-													"parameters": {
-														"angle": "random(-5, 5)"
-													}
-												},
-												{
-													"id": "add-child",
-													"objectClass": "Ground",
-													"sid": 296475127855238,
-													"parameters": {
-														"child": "Spike",
-														"transform-x": true,
-														"transform-y": true,
-														"transform-w": false,
-														"transform-h": false,
-														"transform-a": false,
-														"transform-z-elevation": true,
-														"destroy-with-parent": true
-													}
-												},
-												{
-													"id": "create-object",
-													"objectClass": "System",
-													"sid": 651867621932428,
-													"parameters": {
-														"object-to-create": "Spike",
-														"layer": "\"World\"",
-														"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
-														"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
-														"create-hierarchy": false
-													}
-												},
-												{
-													"id": "set-z-elevation",
-													"objectClass": "Spike",
-													"sid": 221347850371053,
-													"parameters": {
-														"z": "Ground.ZElevation + Ground.ZHeight"
-													}
-												},
-												{
-													"id": "set-angle",
-													"objectClass": "Spike",
-													"sid": 107451103421121,
-													"parameters": {
-														"angle": "random(-5, 5)"
-													}
-												},
-												{
-													"id": "add-child",
-													"objectClass": "Ground",
-													"sid": 422931086550882,
-													"parameters": {
-														"child": "Spike",
-														"transform-x": true,
-														"transform-y": true,
-														"transform-w": false,
-														"transform-h": false,
-														"transform-a": false,
-														"transform-z-elevation": true,
-														"destroy-with-parent": true
 													}
 												}
 											],
-											"sid": 219177729453662
+											"sid": 219177729453662,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 290485105049057,
+															"parameters": {
+																"variable": "objToCreate",
+																"comparison": 0,
+																"value": "\"Spike\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 818208303849636,
+															"parameters": {
+																"child": "Spike",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Spike",
+															"sid": 611513680418706,
+															"parameters": {
+																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "Spike",
+															"sid": 258675014431669,
+															"parameters": {
+																"angle": "random(-5, 5)"
+															}
+														}
+													],
+													"sid": 574988720038459
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 764900519358787
+														},
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 440549309691361,
+															"parameters": {
+																"variable": "objToCreate",
+																"comparison": 0,
+																"value": "\"Pared\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 206250692639334,
+															"parameters": {
+																"child": "Pared",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Pared",
+															"sid": 590706142135807,
+															"parameters": {
+																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														}
+													],
+													"sid": 732508593211480
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "for",
+													"objectClass": "System",
+													"sid": 803517158104907,
+													"disabled": true,
+													"parameters": {
+														"name": "\"Spikes\"",
+														"start-index": "0",
+														"end-index": "1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 216064374084394,
+													"parameters": {
+														"variable": "objToCreate",
+														"value": "choose(\"Spike\",\"Pared\")"
+													}
+												},
+												{
+													"id": "create-object-by-name",
+													"objectClass": "System",
+													"sid": 766843672002115,
+													"parameters": {
+														"object-name": "objToCreate",
+														"layer": "\"World\"",
+														"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
+														"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
+														"create-hierarchy": false
+													}
+												}
+											],
+											"sid": 468913161911282,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 556043587423429,
+															"parameters": {
+																"variable": "objToCreate",
+																"comparison": 0,
+																"value": "\"Spike\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 839675981109893,
+															"parameters": {
+																"child": "Spike",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Spike",
+															"sid": 254306621781430,
+															"parameters": {
+																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "Spike",
+															"sid": 498461372128948,
+															"parameters": {
+																"angle": "random(-5, 5)"
+															}
+														}
+													],
+													"sid": 823268780848121
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 455813634101695
+														},
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 514586087133744,
+															"parameters": {
+																"variable": "objToCreate",
+																"comparison": 0,
+																"value": "\"Pared\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 454818569925086,
+															"parameters": {
+																"child": "Pared",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Pared",
+															"sid": 102710411479174,
+															"parameters": {
+																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														}
+													],
+													"sid": 588032067495020
+												}
+											]
 										}
 									]
 								},
@@ -2672,50 +2989,125 @@
 											],
 											"actions": [
 												{
-													"id": "create-object",
+													"id": "set-eventvar-value",
 													"objectClass": "System",
-													"sid": 119501467029421,
+													"sid": 693985114046181,
 													"parameters": {
-														"object-to-create": "Spike",
+														"variable": "objToCreate",
+														"value": "choose(\"Spike\",\"Pared\")"
+													}
+												},
+												{
+													"id": "create-object-by-name",
+													"objectClass": "System",
+													"sid": 111496042074986,
+													"parameters": {
+														"object-name": "objToCreate",
 														"layer": "\"World\"",
 														"x": "Ground.X - Ground.Width / 2 - 20 + floor(random(1, (Ground.Width / TILESIZE) + 1)) * TILESIZE",
-														"y": "Ground.Y + TILESIZE * loopindex(\"Spikes\")",
+														"y": "Ground.Y + TILESIZE * choose(-1,0,1)",
 														"create-hierarchy": false
-													}
-												},
-												{
-													"id": "set-z-elevation",
-													"objectClass": "Spike",
-													"sid": 198515552523916,
-													"parameters": {
-														"z": "Ground.ZElevation + Ground.ZHeight"
-													}
-												},
-												{
-													"id": "set-angle",
-													"objectClass": "Spike",
-													"sid": 997009431515298,
-													"parameters": {
-														"angle": "random(-5, 5)"
-													}
-												},
-												{
-													"id": "add-child",
-													"objectClass": "Ground",
-													"sid": 498531314229512,
-													"parameters": {
-														"child": "Spike",
-														"transform-x": true,
-														"transform-y": true,
-														"transform-w": false,
-														"transform-h": false,
-														"transform-a": false,
-														"transform-z-elevation": true,
-														"destroy-with-parent": true
 													}
 												}
 											],
-											"sid": 964302321949345
+											"sid": 964302321949345,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 874358319415533,
+															"parameters": {
+																"variable": "objToCreate",
+																"comparison": 0,
+																"value": "\"Spike\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 195399237631047,
+															"parameters": {
+																"child": "Spike",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Spike",
+															"sid": 390060592510567,
+															"parameters": {
+																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "Spike",
+															"sid": 238089228646615,
+															"parameters": {
+																"angle": "random(-5, 5)"
+															}
+														}
+													],
+													"sid": 446588035884520
+												},
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "else",
+															"objectClass": "System",
+															"sid": 738098949746507
+														},
+														{
+															"id": "compare-eventvar",
+															"objectClass": "System",
+															"sid": 626752210372257,
+															"parameters": {
+																"variable": "objToCreate",
+																"comparison": 0,
+																"value": "\"Pared\""
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 639302137834571,
+															"parameters": {
+																"child": "Pared",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Pared",
+															"sid": 267497335857019,
+															"parameters": {
+																"z": "Ground.ZElevation + Ground.ZHeight"
+															}
+														}
+													],
+													"sid": 851830286751260
+												}
+											]
 										}
 									]
 								},
