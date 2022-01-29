@@ -1168,11 +1168,11 @@
 						{
 							"id": "play",
 							"objectClass": "Audio",
-							"sid": 571486947980827,
+							"sid": 948161046872964,
 							"parameters": {
 								"audio-file": "jump",
 								"loop": "not-looping",
-								"volume": "-10",
+								"volume": "-15",
 								"tag-optional": "\"jump\""
 							}
 						}
@@ -1324,6 +1324,128 @@
 											"sid": 716417104106804
 										}
 									]
+								},
+								{
+									"eventType": "comment",
+									"text": "The direction each particle will move towards."
+								},
+								{
+									"eventType": "variable",
+									"name": "AngleOfMotion",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 435619107485054
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 232788424765354,
+											"parameters": {
+												"count": "48"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 745279262476609,
+											"parameters": {
+												"variable": "AngleOfMotion",
+												"value": "random(270, 360)"
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 307127782063133,
+											"parameters": {
+												"object-to-create": "Dust",
+												"layer": "\"World\"",
+												"x": "PlayerCollision.X + 20 + cos(AngleOfMotion) * 4",
+												"y": "PlayerCollision.Y + sin(AngleOfMotion) * 4",
+												"create-hierarchy": false
+											}
+										},
+										{
+											"id": "set-angle-of-motion",
+											"objectClass": "Dust",
+											"sid": 121004552894724,
+											"behaviorType": "Bullet",
+											"parameters": {
+												"angle": "180"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "Dust",
+											"sid": 424904944451958,
+											"parameters": {
+												"angle": "random(0, 360)"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "Dust",
+											"sid": 807889784091581,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"Spread\"",
+												"property": "position",
+												"end-x": "Self.X + cos(AngleOfMotion) * random(16, 20)",
+												"end-y": "Self.Y + sin(AngleOfMotion) * random(16, 20)",
+												"time": "0.5",
+												"ease": "easeoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "Dust",
+											"sid": 262043285176098,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"Ascend\"",
+												"property": "offsetZElevation",
+												"end-value": "random(20, 40)",
+												"time": "0.5",
+												"ease": "easeinsine",
+												"destroy-on-complete": "no",
+												"loop": "yes",
+												"ping-pong": "no"
+											}
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "Dust",
+											"sid": 209643560652538,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"SelfDestroy\"",
+												"property": "size",
+												"end-x": "0",
+												"end-y": "0",
+												"time": "0.5",
+												"ease": "easeinsine",
+												"destroy-on-complete": "yes",
+												"loop": "no",
+												"ping-pong": "no"
+											}
+										}
+									],
+									"sid": 815637092086198
 								}
 							]
 						}
@@ -1383,11 +1505,11 @@
 						{
 							"id": "play",
 							"objectClass": "Audio",
-							"sid": 653319325714571,
+							"sid": 231578265789334,
 							"parameters": {
 								"audio-file": "land",
 								"loop": "not-looping",
-								"volume": "-10",
+								"volume": "-15",
 								"tag-optional": "\"\""
 							}
 						}
@@ -1597,6 +1719,123 @@
 								}
 							],
 							"sid": 690351153270007
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "repeat",
+									"objectClass": "System",
+									"sid": 541974468985319,
+									"parameters": {
+										"count": "16"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 339613682161668,
+									"parameters": {
+										"variable": "AngleOfMotion",
+										"value": "random(0, 360)"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 918535895712407,
+									"parameters": {
+										"object-to-create": "Spark",
+										"layer": "\"World\"",
+										"x": "PlayerCollision.X + 20 + cos(AngleOfMotion) * 4",
+										"y": "PlayerCollision.Y + sin(AngleOfMotion) * 4",
+										"create-hierarchy": false
+									}
+								},
+								{
+									"id": "set-angle-of-motion",
+									"objectClass": "Spark",
+									"sid": 381878897538898,
+									"behaviorType": "Bullet",
+									"parameters": {
+										"angle": "180"
+									}
+								},
+								{
+									"id": "set-speed",
+									"objectClass": "Spark",
+									"sid": 782166278076161,
+									"behaviorType": "Bullet",
+									"parameters": {
+										"speed": "480"
+									}
+								},
+								{
+									"id": "set-angle",
+									"objectClass": "Spark",
+									"sid": 650407491790891,
+									"parameters": {
+										"angle": "random(0, 360)"
+									}
+								},
+								{
+									"type": "comment",
+									"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
+								},
+								{
+									"id": "tween-two-properties",
+									"objectClass": "Spark",
+									"sid": 670023269578212,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"Spread\"",
+										"property": "position",
+										"end-x": "Self.X + cos(AngleOfMotion) * random(16, 20)",
+										"end-y": "Self.Y + sin(AngleOfMotion) * random(16, 20)",
+										"time": "0.5",
+										"ease": "easeoutsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no"
+									}
+								},
+								{
+									"id": "tween-one-property",
+									"objectClass": "Spark",
+									"sid": 194215965014627,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"Ascend\"",
+										"property": "offsetZElevation",
+										"end-value": "random(4, 8)",
+										"time": "0.5",
+										"ease": "easeinsine",
+										"destroy-on-complete": "no",
+										"loop": "yes",
+										"ping-pong": "no"
+									}
+								},
+								{
+									"id": "tween-two-properties",
+									"objectClass": "Spark",
+									"sid": 576336727271572,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"SelfDestroy\"",
+										"property": "size",
+										"end-x": "0",
+										"end-y": "0",
+										"time": "0.5",
+										"ease": "easeinsine",
+										"destroy-on-complete": "yes",
+										"loop": "no",
+										"ping-pong": "no"
+									}
+								}
+							],
+							"sid": 761702964288463
 						}
 					]
 				},
@@ -1815,11 +2054,22 @@
 						{
 							"id": "play",
 							"objectClass": "Audio",
-							"sid": 617535194055310,
+							"sid": 539882720565355,
 							"parameters": {
 								"audio-file": "turn",
 								"loop": "not-looping",
-								"volume": "-5",
+								"volume": "-10",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 307780429923574,
+							"parameters": {
+								"audio-file": "aceleracion2",
+								"loop": "not-looping",
+								"volume": "-13",
 								"tag-optional": "\"\""
 							}
 						}
@@ -1903,7 +2153,257 @@
 											"sid": 889518726851027
 										}
 									],
-									"sid": 931661469572403
+									"sid": 931661469572403,
+									"children": [
+										{
+											"eventType": "comment",
+											"text": "The direction each particle will move towards."
+										},
+										{
+											"eventType": "variable",
+											"name": "AngleOfMotion",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "",
+											"isStatic": false,
+											"isConstant": false,
+											"sid": 271067522394669
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "repeat",
+													"objectClass": "System",
+													"sid": 511190406234034,
+													"parameters": {
+														"count": "16"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 437943569343232,
+													"parameters": {
+														"variable": "AngleOfMotion",
+														"value": "random(160, 200)"
+													}
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 594321428790826,
+													"parameters": {
+														"object-to-create": "Fire",
+														"layer": "\"World\"",
+														"x": "PlayerCollision.X + 20 + cos(AngleOfMotion) * 4",
+														"y": "PlayerCollision.Y + sin(AngleOfMotion) * 4 - 15",
+														"create-hierarchy": false
+													}
+												},
+												{
+													"id": "set-angle-of-motion",
+													"objectClass": "Fire",
+													"sid": 592709142976306,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"angle": "180"
+													}
+												},
+												{
+													"id": "set-speed",
+													"objectClass": "Fire",
+													"sid": 740749345845487,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"speed": "random(100,200)"
+													}
+												},
+												{
+													"id": "set-angle",
+													"objectClass": "Fire",
+													"sid": 263596424403818,
+													"parameters": {
+														"angle": "random(0, 360)"
+													}
+												},
+												{
+													"type": "comment",
+													"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
+												},
+												{
+													"id": "tween-two-properties",
+													"objectClass": "Fire",
+													"sid": 634106977737390,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"Spread\"",
+														"property": "position",
+														"end-x": "Self.X + cos(AngleOfMotion) * random(16, 20)",
+														"end-y": "Self.Y + sin(AngleOfMotion) * random(16, 20)",
+														"time": "0.25",
+														"ease": "easeoutsine",
+														"destroy-on-complete": "no",
+														"loop": "no",
+														"ping-pong": "no"
+													}
+												},
+												{
+													"id": "tween-one-property",
+													"objectClass": "Fire",
+													"sid": 281919296795893,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"Ascend\"",
+														"property": "offsetZElevation",
+														"end-value": "random(4, 8)",
+														"time": "0.25",
+														"ease": "easeinsine",
+														"destroy-on-complete": "no",
+														"loop": "yes",
+														"ping-pong": "no"
+													}
+												},
+												{
+													"id": "tween-two-properties",
+													"objectClass": "Fire",
+													"sid": 793523251270308,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"SelfDestroy\"",
+														"property": "size",
+														"end-x": "0",
+														"end-y": "0",
+														"time": "0.25",
+														"ease": "easeinsine",
+														"destroy-on-complete": "yes",
+														"loop": "no",
+														"ping-pong": "no"
+													}
+												}
+											],
+											"sid": 404208831662002
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "repeat",
+													"objectClass": "System",
+													"sid": 573514540683577,
+													"parameters": {
+														"count": "16"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-eventvar-value",
+													"objectClass": "System",
+													"sid": 375953199308217,
+													"parameters": {
+														"variable": "AngleOfMotion",
+														"value": "random(160, 200)"
+													}
+												},
+												{
+													"id": "create-object",
+													"objectClass": "System",
+													"sid": 949871430495904,
+													"parameters": {
+														"object-to-create": "Fire",
+														"layer": "\"World\"",
+														"x": "PlayerCollision.X + 20 + cos(AngleOfMotion) * 4",
+														"y": "PlayerCollision.Y + sin(AngleOfMotion) * 4 + 15",
+														"create-hierarchy": false
+													}
+												},
+												{
+													"id": "set-angle-of-motion",
+													"objectClass": "Fire",
+													"sid": 919794139845945,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"angle": "180"
+													}
+												},
+												{
+													"id": "set-speed",
+													"objectClass": "Fire",
+													"sid": 715647563570475,
+													"behaviorType": "Bullet",
+													"parameters": {
+														"speed": "random(100,200)"
+													}
+												},
+												{
+													"id": "set-angle",
+													"objectClass": "Fire",
+													"sid": 771954101898496,
+													"parameters": {
+														"angle": "random(0, 360)"
+													}
+												},
+												{
+													"type": "comment",
+													"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
+												},
+												{
+													"id": "tween-two-properties",
+													"objectClass": "Fire",
+													"sid": 535625315001269,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"Spread\"",
+														"property": "position",
+														"end-x": "Self.X + cos(AngleOfMotion) * random(16, 20)",
+														"end-y": "Self.Y + sin(AngleOfMotion) * random(16, 20)",
+														"time": "0.25",
+														"ease": "easeoutsine",
+														"destroy-on-complete": "no",
+														"loop": "no",
+														"ping-pong": "no"
+													}
+												},
+												{
+													"id": "tween-one-property",
+													"objectClass": "Fire",
+													"sid": 951188958659083,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"Ascend\"",
+														"property": "offsetZElevation",
+														"end-value": "random(4, 8)",
+														"time": "0.25",
+														"ease": "easeinsine",
+														"destroy-on-complete": "no",
+														"loop": "yes",
+														"ping-pong": "no"
+													}
+												},
+												{
+													"id": "tween-two-properties",
+													"objectClass": "Fire",
+													"sid": 359038619716590,
+													"behaviorType": "Tween",
+													"parameters": {
+														"tags": "\"SelfDestroy\"",
+														"property": "size",
+														"end-x": "0",
+														"end-y": "0",
+														"time": "0.25",
+														"ease": "easeinsine",
+														"destroy-on-complete": "yes",
+														"loop": "no",
+														"ping-pong": "no"
+													}
+												}
+											],
+											"sid": 116726283163631
+										}
+									]
 								}
 							]
 						}
@@ -2447,20 +2947,20 @@
 			"eventType": "variable",
 			"name": "MINLENGTH",
 			"type": "number",
-			"initialValue": "48",
+			"initialValue": "72",
 			"comment": "",
 			"isStatic": false,
-			"isConstant": true,
+			"isConstant": false,
 			"sid": 853919974591921
 		},
 		{
 			"eventType": "variable",
 			"name": "MAXLENGTH",
 			"type": "number",
-			"initialValue": "64",
+			"initialValue": "88",
 			"comment": "",
 			"isStatic": false,
-			"isConstant": true,
+			"isConstant": false,
 			"sid": 801598510839084
 		},
 		{
@@ -2501,7 +3001,26 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 978751783786271,
+							"parameters": {
+								"variable": "MINLENGTH",
+								"value": "groundSpeed*12"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 481071734783218,
+							"parameters": {
+								"variable": "MAXLENGTH",
+								"value": "groundSpeed*12+12"
+							}
+						}
+					],
 					"sid": 956077109074371,
 					"children": [
 						{
