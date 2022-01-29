@@ -1,0 +1,20 @@
+{
+	"name": "GroundSideTexture",
+	"plugin-id": "NinePatch",
+	"sid": 648498657399900,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"image": {
+		"width": 120,
+		"height": 128,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "png",
+		"exportQuality": 0.8,
+		"imageSpriteId": 468208,
+		"useCollisionPoly": true
+	}
+}

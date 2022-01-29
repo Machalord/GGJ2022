@@ -1,0 +1,20 @@
+{
+	"name": "ParticleExplosion",
+	"plugin-id": "Particles",
+	"sid": 591076053880238,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"image": {
+		"width": 58,
+		"height": 58,
+		"originX": 0.5,
+		"originY": 0.5,
+		"originalSource": "",
+		"exportFormat": "png",
+		"exportQuality": 0.8,
+		"imageSpriteId": 7604611,
+		"useCollisionPoly": true
+	}
+}

@@ -1,0 +1,67 @@
+{
+	"name": "PlayerCollision",
+	"plugin-id": "Sprite",
+	"sid": 118864812274353,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "type",
+			"type": "string",
+			"desc": "",
+			"sid": 886982556728240
+		},
+		{
+			"name": "originalY",
+			"type": "number",
+			"desc": "",
+			"sid": 445277997577279
+		},
+		{
+			"name": "falling",
+			"type": "boolean",
+			"desc": "",
+			"sid": 974172689250965
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 375787106850035
+		},
+		{
+			"behaviorId": "Timer",
+			"name": "Timer",
+			"sid": 431506653619380
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 8,
+						"height": 12,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "png",
+						"exportQuality": 0.8,
+						"imageSpriteId": 1738929,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 498023060428156,
+				"name": "Default",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 0
+			}
+		],
+		"subfolders": []
+	}
+}
