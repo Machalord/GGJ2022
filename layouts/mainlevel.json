@@ -1021,14 +1021,14 @@
 						"object-top": -1,
 						"object-bottom": -1
 					},
-					"uid": 18,
+					"uid": 22,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 576,
-						"y": 382,
-						"width": 256,
-						"height": 256,
+						"x": 1989,
+						"y": -209,
+						"width": 214,
+						"height": 218,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -1038,7 +1038,7 @@
 							1
 						],
 						"angle": 3.141592653589793,
-						"zElevation": -32
+						"zElevation": -39
 					}
 				},
 				{
@@ -1061,14 +1061,14 @@
 						"object-top": -1,
 						"object-bottom": -1
 					},
-					"uid": 19,
+					"uid": 18,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 2028,
-						"y": 574,
-						"width": 256,
-						"height": 256,
+						"x": 635,
+						"y": 473,
+						"width": 214,
+						"height": 218,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -1147,94 +1147,14 @@
 						"object-top": -1,
 						"object-bottom": -1
 					},
-					"uid": 20,
-					"instanceVariables": {},
-					"behaviors": {},
-					"world": {
-						"x": 904,
-						"y": -198,
-						"width": 256,
-						"height": 256,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 3.141592653589793,
-						"zElevation": -32
-					}
-				},
-				{
-					"type": "Plant",
-					"properties": {
-						"shape": "box",
-						"z-height": 128,
-						"initially-visible": true,
-						"face-back": false,
-						"face-front": false,
-						"face-left": false,
-						"face-right": true,
-						"face-top": false,
-						"face-bottom": false,
-						"z-tiling-factor": 8,
-						"object-back": -1,
-						"object-front": -1,
-						"object-left": -1,
-						"object-right": -1,
-						"object-top": -1,
-						"object-bottom": -1
-					},
-					"uid": 23,
-					"instanceVariables": {},
-					"behaviors": {},
-					"world": {
-						"x": 378,
-						"y": -300,
-						"width": 256,
-						"height": 256,
-						"originX": 0.5,
-						"originY": 0.5,
-						"color": [
-							1,
-							1,
-							1,
-							1
-						],
-						"angle": 3.141592653589793,
-						"zElevation": -32
-					}
-				},
-				{
-					"type": "Plant",
-					"properties": {
-						"shape": "box",
-						"z-height": 128,
-						"initially-visible": true,
-						"face-back": false,
-						"face-front": false,
-						"face-left": false,
-						"face-right": true,
-						"face-top": false,
-						"face-bottom": false,
-						"z-tiling-factor": 8,
-						"object-back": -1,
-						"object-front": -1,
-						"object-left": -1,
-						"object-right": -1,
-						"object-top": -1,
-						"object-bottom": -1
-					},
 					"uid": 24,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 1456,
-						"y": -804,
-						"width": 256,
-						"height": 256,
+						"x": 1435,
+						"y": -823,
+						"width": 214,
+						"height": 218,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -1271,10 +1191,10 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 1634,
-						"y": 1154,
-						"width": 256,
-						"height": 256,
+						"x": 1613,
+						"y": 1135,
+						"width": 214,
+						"height": 218,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -1307,14 +1227,14 @@
 						"object-top": -1,
 						"object-bottom": -1
 					},
-					"uid": 22,
+					"uid": 19,
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 2010,
-						"y": -190,
-						"width": 256,
-						"height": 256,
+						"x": 2007,
+						"y": 555,
+						"width": 214,
+						"height": 218,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -1324,14 +1244,94 @@
 							1
 						],
 						"angle": 3.141592653589793,
-						"zElevation": -32
+						"zElevation": -23
+					}
+				},
+				{
+					"type": "Plant",
+					"properties": {
+						"shape": "box",
+						"z-height": 128,
+						"initially-visible": true,
+						"face-back": false,
+						"face-front": false,
+						"face-left": false,
+						"face-right": true,
+						"face-top": false,
+						"face-bottom": false,
+						"z-tiling-factor": 8,
+						"object-back": -1,
+						"object-front": -1,
+						"object-left": -1,
+						"object-right": -1,
+						"object-top": -1,
+						"object-bottom": -1
+					},
+					"uid": 23,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 357,
+						"y": -319,
+						"width": 214,
+						"height": 218,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 3.141592653589793,
+						"zElevation": -20
+					}
+				},
+				{
+					"type": "Plant",
+					"properties": {
+						"shape": "box",
+						"z-height": 128,
+						"initially-visible": true,
+						"face-back": false,
+						"face-front": false,
+						"face-left": false,
+						"face-right": true,
+						"face-top": false,
+						"face-bottom": false,
+						"z-tiling-factor": 8,
+						"object-back": -1,
+						"object-front": -1,
+						"object-left": -1,
+						"object-right": -1,
+						"object-top": -1,
+						"object-bottom": -1
+					},
+					"uid": 20,
+					"instanceVariables": {},
+					"behaviors": {},
+					"world": {
+						"x": 883,
+						"y": -217,
+						"width": 214,
+						"height": 218,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 3.141592653589793,
+						"zElevation": -17
 					}
 				},
 				{
 					"type": "PlayerBillboard",
 					"properties": {
 						"shape": "box",
-						"z-height": 8,
+						"z-height": 16,
 						"initially-visible": true,
 						"face-back": false,
 						"face-front": false,
@@ -1384,10 +1384,10 @@
 						}
 					},
 					"world": {
-						"x": 6,
-						"y": 90,
-						"width": 4,
-						"height": 16,
+						"x": 8,
+						"y": 84,
+						"width": 8,
+						"height": 28,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
@@ -1404,7 +1404,7 @@
 					"type": "PlayerBillboard",
 					"properties": {
 						"shape": "box",
-						"z-height": 8,
+						"z-height": 16,
 						"initially-visible": true,
 						"face-back": false,
 						"face-front": false,
@@ -1457,10 +1457,10 @@
 						}
 					},
 					"world": {
-						"x": 6,
-						"y": 244,
-						"width": 4,
-						"height": 16,
+						"x": 8,
+						"y": 238,
+						"width": 8,
+						"height": 28,
 						"originX": 0.5,
 						"originY": 0.5,
 						"color": [
