@@ -4497,10 +4497,10 @@
 								{
 									"id": "start-timer",
 									"objectClass": "GameManager",
-									"sid": 683549934366815,
+									"sid": 333973992784072,
 									"behaviorType": "Timer",
 									"parameters": {
-										"duration": "1",
+										"duration": "1.3",
 										"type": "once",
 										"tag": "\"PlayerDie\""
 									}
@@ -4598,14 +4598,14 @@
 										{
 											"id": "tween-two-properties",
 											"objectClass": "Explosion",
-											"sid": 450892941677033,
+											"sid": 680576054515716,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"Spread\"",
 												"property": "position",
 												"end-x": "Self.X + cos(AngleOfMotion) * random(32, 40)",
 												"end-y": "Self.Y + sin(AngleOfMotion) * random(32, 40)",
-												"time": "0.3",
+												"time": "0.6",
 												"ease": "easeoutsine",
 												"destroy-on-complete": "no",
 												"loop": "no",
@@ -4615,13 +4615,13 @@
 										{
 											"id": "tween-one-property",
 											"objectClass": "Explosion",
-											"sid": 102357349511114,
+											"sid": 768380471740064,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"Ascend\"",
 												"property": "offsetZElevation",
 												"end-value": "random(20, 40)",
-												"time": "0.3",
+												"time": "0.6",
 												"ease": "easeoutsine",
 												"destroy-on-complete": "no",
 												"loop": "yes",
@@ -4631,14 +4631,14 @@
 										{
 											"id": "tween-two-properties",
 											"objectClass": "Explosion",
-											"sid": 904292587042024,
+											"sid": 474640447388059,
 											"behaviorType": "Tween",
 											"parameters": {
 												"tags": "\"SelfDestroy\"",
 												"property": "size",
 												"end-x": "0",
 												"end-y": "0",
-												"time": "0.3",
+												"time": "0.6",
 												"ease": "easeinsine",
 												"destroy-on-complete": "yes",
 												"loop": "no",
