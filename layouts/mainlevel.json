@@ -742,6 +742,13 @@
 					"uid": 2,
 					"instanceVariables": {},
 					"behaviors": {},
+					"effects": {
+						"BlurVertical": {
+							"parameters": {
+								"intensity": 0.1
+							}
+						}
+					},
 					"world": {
 						"x": 12,
 						"y": 4,
@@ -952,8 +959,8 @@
 					"instanceVariables": {},
 					"behaviors": {},
 					"world": {
-						"x": 56,
-						"y": -84,
+						"x": 130,
+						"y": -134,
 						"width": 64,
 						"height": 64,
 						"originX": 0,

@@ -120,6 +120,14 @@
 		},
 		{
 			"type": "effect",
+			"id": "blurvertical",
+			"name": "Blur vertical",
+			"author": "Scirra",
+			"version": "r280",
+			"bundled": false
+		},
+		{
+			"type": "effect",
 			"id": "water",
 			"name": "Water",
 			"author": "Viktor Korsun",
