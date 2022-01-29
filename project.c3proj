@@ -167,7 +167,8 @@
 			"GroundSideTexture",
 			"LocalStorage",
 			"ParticleExplosion",
-			"GameManager"
+			"GameManager",
+			"3DShape3"
 		],
 		"subfolders": []
 	},
