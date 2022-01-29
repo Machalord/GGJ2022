@@ -3644,7 +3644,7 @@
 					"eventType": "variable",
 					"name": "TRAVELTIME",
 					"type": "number",
-					"initialValue": "30",
+					"initialValue": "60",
 					"comment": "",
 					"isStatic": true,
 					"isConstant": true,
