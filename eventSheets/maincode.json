@@ -384,6 +384,24 @@
 								{
 									"id": "pick-by-comparison",
 									"objectClass": "System",
+									"sid": 129440988549934,
+									"parameters": {
+										"object": "PlayerCollision",
+										"expression": "PlayerCollision.type",
+										"comparison": 0,
+										"value": "turn"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 538107461843642
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
 									"sid": 651807636979597,
 									"parameters": {
 										"object": "sfText",
