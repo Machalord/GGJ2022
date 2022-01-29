@@ -1,94 +1,100 @@
 {
-	"name": "StartFlag",
+	"name": "Explosion",
 	"plugin-id": "Shape3D",
-	"sid": 677198499012054,
+	"sid": 641035110605385,
 	"isGlobal": false,
 	"instanceVariables": [],
-	"behaviorTypes": [],
-	"effectTypes": [
+	"behaviorTypes": [
 		{
-			"effectId": "water",
-			"name": "Water"
+			"behaviorId": "Tween",
+			"name": "Tween",
+			"sid": 919690771672961
+		},
+		{
+			"behaviorId": "Bullet",
+			"name": "Bullet",
+			"sid": 155833364788604
 		}
 	],
+	"effectTypes": [],
 	"animations": {
 		"items": [
 			{
 				"frames": [
 					{
-						"width": 4,
-						"height": 136,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 9520540,
+						"imageSpriteId": 7611977,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 4,
-						"height": 136,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 5713087,
+						"imageSpriteId": 7350450,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 136,
-						"height": 48,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 7894720,
+						"imageSpriteId": 9933357,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 136,
-						"height": 48,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 2591303,
+						"imageSpriteId": 1775244,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 4,
-						"height": 136,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 318760,
+						"imageSpriteId": 3110241,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 4,
-						"height": 136,
+						"width": 16,
+						"height": 16,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 3342300,
+						"imageSpriteId": 6479363,
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 389609237733500,
+				"sid": 809556427673659,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,
