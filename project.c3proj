@@ -127,6 +127,14 @@
 			"bundled": false
 		},
 		{
+			"type": "behavior",
+			"id": "Sin",
+			"name": "Sine",
+			"author": "Scirra",
+			"version": "r280",
+			"bundled": false
+		},
+		{
 			"type": "effect",
 			"id": "hsladjust",
 			"name": "Adjust HSL",
@@ -191,7 +199,12 @@
 			"Explosion",
 			"Logo",
 			"People1",
-			"People2"
+			"People2",
+			"GroundNearRoad",
+			"Tree1",
+			"CrowdSprites",
+			"People3",
+			"People4"
 		],
 		"subfolders": []
 	},

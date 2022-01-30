@@ -1,7 +1,7 @@
 {
-	"name": "People1",
+	"name": "People3",
 	"plugin-id": "Shape3D",
-	"sid": 167039096599863,
+	"sid": 282923266900096,
 	"isGlobal": false,
 	"instanceVariables": [],
 	"behaviorTypes": [],
@@ -18,7 +18,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 1538805,
+						"imageSpriteId": 7074075,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
@@ -30,22 +30,22 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 9522357,
+						"imageSpriteId": 4294369,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
 					{
-						"width": 32,
-						"height": 93,
+						"width": 63,
+						"height": 96,
 						"originX": 0.5,
 						"originY": 0.5,
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 6647503,
+						"imageSpriteId": 787517,
 						"collisionPoly": {
 							"points": [
-								0.1956521739130435,
+								0.19565217391304346,
 								0.10975609756097561,
 								0.5,
 								0.012195121951219513,
@@ -57,7 +57,7 @@
 								0.9512195121951219,
 								0.5,
 								0.9878048780487805,
-								0.06521739130434782,
+								0.06521739130434778,
 								0.9512195121951219,
 								0.15217391304347827,
 								0.5
@@ -74,7 +74,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 6226721,
+						"imageSpriteId": 8732522,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
@@ -86,7 +86,7 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 9686578,
+						"imageSpriteId": 1705310,
 						"useCollisionPoly": true,
 						"duration": 1
 					},
@@ -98,12 +98,12 @@
 						"originalSource": "",
 						"exportFormat": "png",
 						"exportQuality": 0.8,
-						"imageSpriteId": 4097315,
+						"imageSpriteId": 695400,
 						"useCollisionPoly": true,
 						"duration": 1
 					}
 				],
-				"sid": 841050667200238,
+				"sid": 124860317954691,
 				"name": "Animation 1",
 				"isLooping": false,
 				"isPingPong": false,

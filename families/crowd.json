@@ -10,10 +10,28 @@
 			"sid": 823795230911164
 		}
 	],
-	"behaviorTypes": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Sin",
+			"name": "Sine",
+			"sid": 347535262258476
+		},
+		{
+			"behaviorId": "Sin",
+			"name": "Sine2",
+			"sid": 759823199937792
+		},
+		{
+			"behaviorId": "Sin",
+			"name": "Sine3",
+			"sid": 180297917776486
+		}
+	],
 	"effectTypes": [],
 	"members": [
 		"People1",
-		"People2"
+		"People2",
+		"People3",
+		"People4"
 	]
 }

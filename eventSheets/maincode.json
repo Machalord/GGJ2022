@@ -3589,6 +3589,16 @@
 						},
 						{
 							"eventType": "variable",
+							"name": "groundNearRoadY",
+							"type": "number",
+							"initialValue": "0",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 900669931524711
+						},
+						{
+							"eventType": "variable",
 							"name": "objToCreate",
 							"type": "string",
 							"initialValue": "",
@@ -3620,6 +3630,15 @@
 										"variable": "loopind",
 										"value": "0"
 									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 125799689562441,
+									"parameters": {
+										"variable": "groundNearRoadY",
+										"value": "-1"
+									}
 								}
 							],
 							"sid": 148827457138293
@@ -3640,6 +3659,15 @@
 									"sid": 518845775423264,
 									"parameters": {
 										"variable": "loopind",
+										"value": "1"
+									}
+								},
+								{
+									"id": "set-eventvar-value",
+									"objectClass": "System",
+									"sid": 777148010393739,
+									"parameters": {
+										"variable": "groundNearRoadY",
 										"value": "1"
 									}
 								}
@@ -3723,6 +3751,65 @@
 										"destroy-on-complete": "no",
 										"loop": "no",
 										"ping-pong": "no"
+									}
+								},
+								{
+									"id": "create-object",
+									"objectClass": "System",
+									"sid": 608163329990756,
+									"parameters": {
+										"object-to-create": "GroundNearRoad",
+										"layer": "\"World\"",
+										"x": "Ground.X",
+										"y": "Ground.Y",
+										"create-hierarchy": false
+									}
+								},
+								{
+									"id": "set-height",
+									"objectClass": "GroundNearRoad",
+									"sid": 891815890151122,
+									"parameters": {
+										"height": "100"
+									}
+								},
+								{
+									"id": "set-width",
+									"objectClass": "GroundNearRoad",
+									"sid": 134590794051578,
+									"parameters": {
+										"width": "Ground.Width"
+									}
+								},
+								{
+									"id": "set-y",
+									"objectClass": "GroundNearRoad",
+									"sid": 540996534178076,
+									"parameters": {
+										"y": "Self.Y + Ground.Height * groundNearRoadY - 10 * groundNearRoadY"
+									}
+								},
+								{
+									"id": "set-z-elevation",
+									"objectClass": "GroundNearRoad",
+									"sid": 249268752751185,
+									"parameters": {
+										"z": "Ground.ZElevation"
+									}
+								},
+								{
+									"id": "add-child",
+									"objectClass": "Ground",
+									"sid": 316217923676281,
+									"parameters": {
+										"child": "GroundNearRoad",
+										"transform-x": true,
+										"transform-y": true,
+										"transform-w": false,
+										"transform-h": false,
+										"transform-a": false,
+										"transform-z-elevation": true,
+										"destroy-with-parent": true
 									}
 								}
 							],
@@ -4329,6 +4416,7 @@
 									],
 									"actions": [],
 									"sid": 800848038503167,
+									"disabled": true,
 									"children": [
 										{
 											"eventType": "block",
@@ -4381,7 +4469,8 @@
 													}
 												}
 											],
-											"sid": 654979392427409
+											"sid": 654979392427409,
+											"disabled": true
 										}
 									]
 								},
@@ -4391,7 +4480,366 @@
 										{
 											"id": "for",
 											"objectClass": "System",
+											"sid": 787816462463870,
+											"parameters": {
+												"name": "\"people\"",
+												"start-index": "1",
+												"end-index": "15"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 162565440033860,
+											"parameters": {
+												"object-to-create": "Crowd",
+												"layer": "\"Billboards\"",
+												"x": "GroundNearRoad.X + random(-((GroundNearRoad.Width / 2) - 8),((GroundNearRoad.Width / 2) - 8))",
+												"y": "GroundNearRoad.Y + groundNearRoadY * random(-40,15)",
+												"create-hierarchy": false
+											}
+										},
+										{
+											"id": "set-active",
+											"objectClass": "Crowd",
+											"sid": 884124373500623,
+											"behaviorType": "Sine3",
+											"parameters": {
+												"state": "inactive"
+											}
+										},
+										{
+											"id": "set-z-elevation",
+											"objectClass": "Crowd",
+											"sid": 826435415093361,
+											"parameters": {
+												"z": "GroundNearRoad.ZElevation+64"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "Crowd",
+											"sid": 498920727203678,
+											"parameters": {
+												"angle": "Self.Angle + groundNearRoadY * 35"
+											}
+										},
+										{
+											"id": "set-z-height",
+											"objectClass": "Crowd",
+											"sid": 584716824081021,
+											"parameters": {
+												"z-height": "Self.ZHeight + random(-2,2)"
+											}
+										},
+										{
+											"id": "set-width",
+											"objectClass": "Crowd",
+											"sid": 670503945804308,
+											"parameters": {
+												"width": "Self.Width + random(-5,5)"
+											}
+										},
+										{
+											"id": "set-height",
+											"objectClass": "Crowd",
+											"sid": 784112257014829,
+											"parameters": {
+												"height": "Self.Height+ random(-5,5)"
+											}
+										},
+										{
+											"id": "add-child",
+											"objectClass": "Ground",
+											"sid": 525793160693202,
+											"parameters": {
+												"child": "Crowd",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": false,
+												"transform-z-elevation": true,
+												"destroy-with-parent": true
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 183916823461600,
+											"disabled": true,
+											"parameters": {
+												"object-to-create": "CrowdSprites",
+												"layer": "\"Billboards\"",
+												"x": "2000",
+												"y": "2000",
+												"create-hierarchy": false
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "CrowdSprites",
+											"sid": 535495469035970,
+											"disabled": true,
+											"parameters": {
+												"instance-variable": "forUID",
+												"value": "Crowd.UID"
+											}
+										},
+										{
+											"id": "add-child",
+											"objectClass": "Ground",
+											"sid": 469748451685300,
+											"disabled": true,
+											"parameters": {
+												"child": "CrowdSprites",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": false,
+												"transform-z-elevation": true,
+												"destroy-with-parent": true
+											}
+										}
+									],
+									"sid": 614479238202560,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 304394328984027,
+													"parameters": {
+														"object": "CrowdSprites",
+														"expression": "CrowdSprites.forUID",
+														"comparison": 0,
+														"value": "Crowd.UID"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-animation-frame",
+													"objectClass": "CrowdSprites",
+													"sid": 669985049705386,
+													"parameters": {
+														"frame-number": "floor(random(0,CrowdSprites.AnimationFrameCount))"
+													}
+												}
+											],
+											"sid": 432493005249178,
+											"disabled": true,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "pick-by-comparison",
+															"objectClass": "System",
+															"sid": 956770631696436,
+															"parameters": {
+																"object": "Crowd",
+																"expression": "CrowdSprites.forUID",
+																"comparison": 0,
+																"value": "Crowd.UID"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-face-object",
+															"objectClass": "Crowd",
+															"sid": 633602418198689,
+															"parameters": {
+																"face": "left",
+																"object": "CrowdSprites"
+															}
+														}
+													],
+													"sid": 570945337296748,
+													"disabled": true
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 466821932583325,
+													"parameters": {
+														"first-value": "groundNearRoadY",
+														"comparison": 0,
+														"second-value": "-1"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "set-instvar-value",
+													"objectClass": "Crowd",
+													"sid": 744689310804892,
+													"parameters": {
+														"instance-variable": "lookingAt",
+														"value": "\"left\""
+													}
+												}
+											],
+											"sid": 475699566540175,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-y",
+															"objectClass": "Crowd",
+															"sid": 406026910632250,
+															"parameters": {
+																"comparison": 5,
+																"y-co-ordinate": "Ground.Y"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-height",
+															"objectClass": "Crowd",
+															"sid": 436666092490945,
+															"parameters": {
+																"height": "Self.Height * -1"
+															}
+														}
+													],
+													"sid": 174297808382552
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "else",
+													"objectClass": "System",
+													"sid": 280519572426021
+												}
+											],
+											"actions": [
+												{
+													"id": "set-instvar-value",
+													"objectClass": "Crowd",
+													"sid": 780691016645484,
+													"parameters": {
+														"instance-variable": "lookingAt",
+														"value": "\"right\""
+													}
+												}
+											],
+											"sid": 177480390561859,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "compare-y",
+															"objectClass": "Crowd",
+															"sid": 352952058764799,
+															"parameters": {
+																"comparison": 5,
+																"y-co-ordinate": "Ground.Y"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-height",
+															"objectClass": "Crowd",
+															"sid": 194589561533707,
+															"parameters": {
+																"height": "Self.Height * -1"
+															}
+														}
+													],
+													"sid": 389882758569324
+												}
+											]
+										}
+									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 553923286105654,
+											"parameters": {
+												"name": "\"trees\"",
+												"start-index": "1",
+												"end-index": "3"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 556168978234749,
+											"parameters": {
+												"object-to-create": "Tree1",
+												"layer": "\"Billboards\"",
+												"x": "GroundNearRoad.X + random(-((GroundNearRoad.Width / 2) - 8),((GroundNearRoad.Width / 2) - 8))",
+												"y": "GroundNearRoad.Y + groundNearRoadY * random(20,30)",
+												"create-hierarchy": false
+											}
+										},
+										{
+											"id": "set-z-elevation",
+											"objectClass": "Tree1",
+											"sid": 106278715226886,
+											"parameters": {
+												"z": "GroundNearRoad.ZElevation+64"
+											}
+										},
+										{
+											"id": "set-z-height",
+											"objectClass": "Tree1",
+											"sid": 509077612594537,
+											"parameters": {
+												"z-height": "Self.ZHeight + random(-10,20)"
+											}
+										},
+										{
+											"id": "add-child",
+											"objectClass": "Ground",
+											"sid": 113294021748568,
+											"parameters": {
+												"child": "Tree1",
+												"transform-x": true,
+												"transform-y": true,
+												"transform-w": false,
+												"transform-h": false,
+												"transform-a": false,
+												"transform-z-elevation": true,
+												"destroy-with-parent": true
+											}
+										}
+									],
+									"sid": 255804854500333
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
 											"sid": 154080437457317,
+											"disabled": true,
 											"parameters": {
 												"name": "\"X\"",
 												"start-index": "-1",
@@ -4409,6 +4857,7 @@
 													"id": "compare-two-values",
 													"objectClass": "System",
 													"sid": 748398627073656,
+													"disabled": true,
 													"parameters": {
 														"first-value": "loopindex(\"X\")",
 														"comparison": 1,
@@ -4417,135 +4866,39 @@
 												}
 											],
 											"actions": [],
-											"sid": 491333651656850,
-											"children": [
-												{
-													"eventType": "block",
-													"conditions": [
-														{
-															"id": "for",
-															"objectClass": "System",
-															"sid": 231434951510915,
-															"parameters": {
-																"name": "\"people\"",
-																"start-index": "1",
-																"end-index": "2"
-															}
-														}
-													],
-													"actions": [
-														{
-															"id": "create-object",
-															"objectClass": "System",
-															"sid": 634383700329742,
-															"parameters": {
-																"object-to-create": "Crowd",
-																"layer": "\"World\"",
-																"x": "Ground.X + random(-((Ground.Width / 2) - 8),((Ground.Width / 2) - 8))",
-																"y": "Ground.Y + loopindex(\"X\") * 60",
-																"create-hierarchy": false
-															}
-														},
-														{
-															"id": "set-z-elevation",
-															"objectClass": "Crowd",
-															"sid": 689403121130370,
-															"parameters": {
-																"z": "Ground.ZElevation+64"
-															}
-														},
-														{
-															"id": "set-angle",
-															"objectClass": "Crowd",
-															"sid": 109385485930676,
-															"parameters": {
-																"angle": "Self.Angle + loopindex(\"X\") * 35"
-															}
-														},
-														{
-															"id": "set-height",
-															"objectClass": "Crowd",
-															"sid": 166662352455846,
-															"parameters": {
-																"height": "Self.Height+ loopindex(\"X\") * 1"
-															}
-														},
-														{
-															"id": "add-child",
-															"objectClass": "Ground",
-															"sid": 486236976901072,
-															"parameters": {
-																"child": "Crowd",
-																"transform-x": true,
-																"transform-y": true,
-																"transform-w": false,
-																"transform-h": false,
-																"transform-a": false,
-																"transform-z-elevation": true,
-																"destroy-with-parent": true
-															}
-														}
-													],
-													"sid": 870893222152123,
-													"children": [
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "compare-two-values",
-																	"objectClass": "System",
-																	"sid": 289792589631759,
-																	"parameters": {
-																		"first-value": "loopindex(\"X\")",
-																		"comparison": 0,
-																		"second-value": "-1"
-																	}
-																}
-															],
-															"actions": [
-																{
-																	"id": "set-instvar-value",
-																	"objectClass": "Crowd",
-																	"sid": 502230347503274,
-																	"parameters": {
-																		"instance-variable": "lookingAt",
-																		"value": "\"left\""
-																	}
-																}
-															],
-															"sid": 731265539932024
-														},
-														{
-															"eventType": "block",
-															"conditions": [
-																{
-																	"id": "else",
-																	"objectClass": "System",
-																	"sid": 324920317958602
-																}
-															],
-															"actions": [
-																{
-																	"id": "set-instvar-value",
-																	"objectClass": "Crowd",
-																	"sid": 265688098609854,
-																	"parameters": {
-																		"instance-variable": "lookingAt",
-																		"value": "\"right\""
-																	}
-																}
-															],
-															"sid": 671916672828927
-														}
-													]
-												}
-											]
+											"sid": 491333651656850
 										}
 									]
 								}
 							]
 						}
 					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-tweens-finished",
+							"objectClass": "Ground",
+							"sid": 621283844746221,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"Ascend\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-active",
+							"objectClass": "Crowd",
+							"sid": 535916555571239,
+							"behaviorType": "Sine3",
+							"parameters": {
+								"state": "active"
+							}
+						}
+					],
+					"sid": 353919316452453
 				},
 				{
 					"eventType": "block",
@@ -4758,6 +5111,14 @@
 											"parameters": {
 												"x": "PlayerCollision.X",
 												"y": "PlayerCollision.Y"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "Crowd",
+											"sid": 948156493602255,
+											"parameters": {
+												"angle": "Self.Angle*-1"
 											}
 										}
 									],
