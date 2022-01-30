@@ -3,7 +3,7 @@
 	"events": [
 		{
 			"eventType": "comment",
-			"text": "Made by Viridino Studios (@ViridinoStudios)\n\nMateus Ferreira - Programmer\nTwitter: @BonzerKitten\nE-mail: ferreiramoreiramateus@gmail.com\n\nWesley Andrade - Artist\nTwitter: @andrart7\nE-mail: wesleymatos1989@gmail.com\n\nMade with the support of patrons on https://www.patreon.com/viridinostudios"
+			"text": "Base project example by Viridino Studios (@ViridinoStudios)\n\nMateus Ferreira - Programmer\nTwitter: @BonzerKitten\nE-mail: ferreiramoreiramateus@gmail.com\n\nWesley Andrade - Artist\nTwitter: @andrart7\nE-mail: wesleymatos1989@gmail.com\n\nMade with the support of patrons on https://www.patreon.com/viridinostudios"
 		},
 		{
 			"eventType": "variable",
@@ -4692,6 +4692,7 @@
 												}
 											],
 											"sid": 475699566540175,
+											"disabled": true,
 											"children": [
 												{
 													"eventType": "block",
@@ -4716,7 +4717,8 @@
 															}
 														}
 													],
-													"sid": 174297808382552
+													"sid": 174297808382552,
+													"disabled": true
 												}
 											]
 										},
@@ -4741,6 +4743,7 @@
 												}
 											],
 											"sid": 177480390561859,
+											"disabled": true,
 											"children": [
 												{
 													"eventType": "block",
@@ -4765,7 +4768,8 @@
 															}
 														}
 													],
-													"sid": 389882758569324
+													"sid": 389882758569324,
+													"disabled": true
 												}
 											]
 										}
