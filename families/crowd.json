@@ -1,0 +1,19 @@
+{
+	"name": "Crowd",
+	"plugin-id": "Shape3D",
+	"sid": 970500790055549,
+	"instanceVariables": [
+		{
+			"name": "lookingAt",
+			"type": "string",
+			"desc": "",
+			"sid": 823795230911164
+		}
+	],
+	"behaviorTypes": [],
+	"effectTypes": [],
+	"members": [
+		"People1",
+		"People2"
+	]
+}

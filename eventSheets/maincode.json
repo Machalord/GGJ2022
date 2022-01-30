@@ -303,12 +303,12 @@
 								{
 									"id": "tween-two-properties",
 									"objectClass": "Logo",
-									"sid": 216302699561502,
+									"sid": 181057344058137,
 									"behaviorType": "Tween",
 									"parameters": {
 										"tags": "\"Position\"",
 										"property": "position",
-										"end-x": "158",
+										"end-x": "165",
 										"end-y": "40",
 										"time": "2",
 										"ease": "easeoutelastic",
@@ -4384,6 +4384,164 @@
 											"sid": 654979392427409
 										}
 									]
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "for",
+											"objectClass": "System",
+											"sid": 154080437457317,
+											"parameters": {
+												"name": "\"X\"",
+												"start-index": "-1",
+												"end-index": "1"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 109696042441702,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-two-values",
+													"objectClass": "System",
+													"sid": 748398627073656,
+													"parameters": {
+														"first-value": "loopindex(\"X\")",
+														"comparison": 1,
+														"second-value": "0"
+													}
+												}
+											],
+											"actions": [],
+											"sid": 491333651656850,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "for",
+															"objectClass": "System",
+															"sid": 231434951510915,
+															"parameters": {
+																"name": "\"people\"",
+																"start-index": "1",
+																"end-index": "2"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 634383700329742,
+															"parameters": {
+																"object-to-create": "Crowd",
+																"layer": "\"World\"",
+																"x": "Ground.X + random(-((Ground.Width / 2) - 8),((Ground.Width / 2) - 8))",
+																"y": "Ground.Y + loopindex(\"X\") * 60",
+																"create-hierarchy": false
+															}
+														},
+														{
+															"id": "set-z-elevation",
+															"objectClass": "Crowd",
+															"sid": 689403121130370,
+															"parameters": {
+																"z": "Ground.ZElevation+64"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "Crowd",
+															"sid": 109385485930676,
+															"parameters": {
+																"angle": "Self.Angle + loopindex(\"X\") * 35"
+															}
+														},
+														{
+															"id": "set-height",
+															"objectClass": "Crowd",
+															"sid": 166662352455846,
+															"parameters": {
+																"height": "Self.Height+ loopindex(\"X\") * 1"
+															}
+														},
+														{
+															"id": "add-child",
+															"objectClass": "Ground",
+															"sid": 486236976901072,
+															"parameters": {
+																"child": "Crowd",
+																"transform-x": true,
+																"transform-y": true,
+																"transform-w": false,
+																"transform-h": false,
+																"transform-a": false,
+																"transform-z-elevation": true,
+																"destroy-with-parent": true
+															}
+														}
+													],
+													"sid": 870893222152123,
+													"children": [
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "compare-two-values",
+																	"objectClass": "System",
+																	"sid": 289792589631759,
+																	"parameters": {
+																		"first-value": "loopindex(\"X\")",
+																		"comparison": 0,
+																		"second-value": "-1"
+																	}
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "Crowd",
+																	"sid": 502230347503274,
+																	"parameters": {
+																		"instance-variable": "lookingAt",
+																		"value": "\"left\""
+																	}
+																}
+															],
+															"sid": 731265539932024
+														},
+														{
+															"eventType": "block",
+															"conditions": [
+																{
+																	"id": "else",
+																	"objectClass": "System",
+																	"sid": 324920317958602
+																}
+															],
+															"actions": [
+																{
+																	"id": "set-instvar-value",
+																	"objectClass": "Crowd",
+																	"sid": 265688098609854,
+																	"parameters": {
+																		"instance-variable": "lookingAt",
+																		"value": "\"right\""
+																	}
+																}
+															],
+															"sid": 671916672828927
+														}
+													]
+												}
+											]
+										}
+									]
 								}
 							]
 						}
@@ -4561,6 +4719,53 @@
 					"actions": [],
 					"sid": 357894094751174,
 					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "for-each",
+									"objectClass": "System",
+									"sid": 787264805575789,
+									"parameters": {
+										"object": "PlayerCollision"
+									}
+								}
+							],
+							"actions": [],
+							"sid": 328905515132328,
+							"disabled": true,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 250306863714073,
+											"parameters": {
+												"object": "Crowd",
+												"expression": "Crowd.lookingAt",
+												"comparison": 0,
+												"value": "PlayerCollision.type"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-angle-toward-position",
+											"objectClass": "Crowd",
+											"sid": 539889763099043,
+											"parameters": {
+												"x": "PlayerCollision.X",
+												"y": "PlayerCollision.Y"
+											}
+										}
+									],
+									"sid": 497148108580422,
+									"disabled": true
+								}
+							]
+						},
 						{
 							"eventType": "block",
 							"conditions": [
