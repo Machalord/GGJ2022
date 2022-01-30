@@ -156,6 +156,16 @@
 			"sid": 279964427837427
 		},
 		{
+			"eventType": "variable",
+			"name": "waitingForFirstPlay",
+			"type": "boolean",
+			"initialValue": "false",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 979788334551040
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Camera",
@@ -289,6 +299,31 @@
 										"variable": "playing",
 										"value": "false"
 									}
+								},
+								{
+									"id": "tween-two-properties",
+									"objectClass": "Logo",
+									"sid": 216302699561502,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"Position\"",
+										"property": "position",
+										"end-x": "158",
+										"end-y": "40",
+										"time": "2",
+										"ease": "easeoutelastic",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "Logo",
+									"sid": 457833071132240,
+									"parameters": {
+										"visibility": "visible"
+									}
 								}
 							],
 							"sid": 257823580539170
@@ -310,6 +345,22 @@
 									"parameters": {
 										"variable": "playing",
 										"value": "true"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "Logo",
+									"sid": 883309684887443,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "sfText",
+									"sid": 851427933629339,
+									"parameters": {
+										"visibility": "visible"
 									}
 								}
 							],
@@ -534,6 +585,85 @@
 					"eventType": "block",
 					"conditions": [
 						{
+							"id": "on-tweens-finished",
+							"objectClass": "Logo",
+							"sid": 808578392161126,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"Position\""
+							}
+						}
+					],
+					"actions": [],
+					"sid": 511620519158884,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 971773176087022,
+									"parameters": {
+										"object": "sfText",
+										"expression": "sfText.for",
+										"comparison": 0,
+										"value": "\"tuto\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "tween-one-property",
+									"objectClass": "sfText",
+									"sid": 617481078139756,
+									"behaviorType": "Tween",
+									"parameters": {
+										"tags": "\"Opacity\"",
+										"property": "offsetOpacity",
+										"end-value": "100",
+										"time": "0.5",
+										"ease": "easeinsine",
+										"destroy-on-complete": "no",
+										"loop": "no",
+										"ping-pong": "no"
+									}
+								}
+							],
+							"sid": 250460556133109
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-tweens-finished",
+							"objectClass": "sfText",
+							"sid": 480321958458291,
+							"behaviorType": "Tween",
+							"parameters": {
+								"tags": "\"Opacity\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-boolean-eventvar",
+							"objectClass": "System",
+							"sid": 160790546120614,
+							"parameters": {
+								"variable": "waitingForFirstPlay",
+								"value": "true"
+							}
+						}
+					],
+					"sid": 547626828292064
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
 							"id": "every-tick",
 							"objectClass": "System",
 							"sid": 343218213734633
@@ -555,15 +685,6 @@
 								"up-y": "0",
 								"up-z": "1"
 							}
-						},
-						{
-							"id": "add-to-eventvar",
-							"objectClass": "System",
-							"sid": 207805052759857,
-							"parameters": {
-								"variable": "timeCurrent",
-								"value": "dt"
-							}
 						}
 					],
 					"sid": 133599944890382,
@@ -572,173 +693,200 @@
 							"eventType": "block",
 							"conditions": [
 								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 129440988549934,
-									"parameters": {
-										"object": "PlayerCollision",
-										"expression": "PlayerCollision.type",
-										"comparison": 0,
-										"value": "turn"
-									}
-								}
-							],
-							"actions": [],
-							"sid": 538107461843642
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 651807636979597,
-									"parameters": {
-										"object": "sfText",
-										"expression": "sfText.for",
-										"comparison": 0,
-										"value": "\"tc\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-text",
-									"objectClass": "sfText",
-									"sid": 729945024123988,
-									"parameters": {
-										"text": "\"TIME: \"&floor(timeCurrent)"
-									}
-								}
-							],
-							"sid": 909275050750304
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 434230791191313,
-									"parameters": {
-										"object": "sfText",
-										"expression": "sfText.for",
-										"comparison": 0,
-										"value": "\"tp\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-text",
-									"objectClass": "sfText",
-									"sid": 413586837394781,
-									"parameters": {
-										"text": "\"PREV: \"&floor(timePrevious)"
-									}
-								}
-							],
-							"sid": 956427783453652
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "pick-by-comparison",
-									"objectClass": "System",
-									"sid": 916395213121870,
-									"parameters": {
-										"object": "sfText",
-										"expression": "sfText.for",
-										"comparison": 0,
-										"value": "\"tb\""
-									}
-								}
-							],
-							"actions": [
-								{
-									"id": "set-text",
-									"objectClass": "sfText",
-									"sid": 114169826948918,
-									"parameters": {
-										"text": "\"BEST: \"&floor(timeBest)"
-									}
-								}
-							],
-							"sid": 216902624486754
-						},
-						{
-							"eventType": "block",
-							"conditions": [
-								{
-									"id": "compare-eventvar",
-									"objectClass": "System",
-									"sid": 879566647005757,
-									"parameters": {
-										"variable": "timeCurrent",
-										"comparison": 5,
-										"value": "timeToDifficultyIncrease*currentDifficulty"
-									}
-								},
-								{
 									"id": "compare-boolean-eventvar",
 									"objectClass": "System",
-									"sid": 196537677031169,
+									"sid": 367207272919465,
 									"parameters": {
-										"variable": "currentTimeLoaded"
+										"variable": "playing"
 									}
 								}
 							],
 							"actions": [
 								{
-									"id": "set-eventvar-value",
+									"id": "add-to-eventvar",
 									"objectClass": "System",
-									"sid": 118897417384833,
+									"sid": 798552132535841,
 									"parameters": {
-										"variable": "currentDifficulty",
-										"value": "currentDifficulty+1"
-									}
-								},
-								{
-									"id": "set-eventvar-value",
-									"objectClass": "System",
-									"sid": 940378839703094,
-									"parameters": {
-										"variable": "GroundSpeed",
-										"value": "max(groundSpeedBASE,currentDifficulty+1)"
+										"variable": "timeCurrent",
+										"value": "dt"
 									}
 								}
 							],
-							"sid": 890096404854810,
+							"sid": 973795523923073,
 							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 602602184177941,
+											"parameters": {
+												"object": "PlayerCollision",
+												"expression": "PlayerCollision.type",
+												"comparison": 0,
+												"value": "turn"
+											}
+										}
+									],
+									"actions": [],
+									"sid": 271363650942020
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 956322259466056,
+											"parameters": {
+												"object": "sfText",
+												"expression": "sfText.for",
+												"comparison": 0,
+												"value": "\"tc\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "sfText",
+											"sid": 691612121565699,
+											"parameters": {
+												"text": "\"TIME: \"&floor(timeCurrent)"
+											}
+										}
+									],
+									"sid": 388327432685646
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 982111504475166,
+											"parameters": {
+												"object": "sfText",
+												"expression": "sfText.for",
+												"comparison": 0,
+												"value": "\"tp\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "sfText",
+											"sid": 856106023908854,
+											"parameters": {
+												"text": "\"PREV: \"&floor(timePrevious)"
+											}
+										}
+									],
+									"sid": 197857834818664
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 851239071934841,
+											"parameters": {
+												"object": "sfText",
+												"expression": "sfText.for",
+												"comparison": 0,
+												"value": "\"tb\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-text",
+											"objectClass": "sfText",
+											"sid": 606873686375532,
+											"parameters": {
+												"text": "\"BEST: \"&floor(timeBest)"
+											}
+										}
+									],
+									"sid": 233182620209288
+								},
 								{
 									"eventType": "block",
 									"conditions": [
 										{
 											"id": "compare-eventvar",
 											"objectClass": "System",
-											"sid": 712338939049083,
+											"sid": 203712907544249,
 											"parameters": {
-												"variable": "currentDifficulty",
-												"comparison": 0,
-												"value": "4"
+												"variable": "timeCurrent",
+												"comparison": 5,
+												"value": "timeToDifficultyIncrease*currentDifficulty"
+											}
+										},
+										{
+											"id": "compare-boolean-eventvar",
+											"objectClass": "System",
+											"sid": 755587500241093,
+											"parameters": {
+												"variable": "currentTimeLoaded"
 											}
 										}
 									],
 									"actions": [
 										{
-											"id": "fade-volume",
-											"objectClass": "Audio",
-											"sid": 584663872896977,
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 914660090832503,
 											"parameters": {
-												"tag": "\"music\"",
-												"db": "-100",
-												"duration": "0.5",
-												"ending": "stop"
+												"variable": "currentDifficulty",
+												"value": "currentDifficulty+1"
+											}
+										},
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 641344745192267,
+											"parameters": {
+												"variable": "GroundSpeed",
+												"value": "max(groundSpeedBASE,currentDifficulty+1)"
 											}
 										}
 									],
-									"sid": 484359168984858
+									"sid": 332304836611902,
+									"children": [
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "compare-eventvar",
+													"objectClass": "System",
+													"sid": 434795145843696,
+													"parameters": {
+														"variable": "currentDifficulty",
+														"comparison": 0,
+														"value": "4"
+													}
+												}
+											],
+											"actions": [
+												{
+													"id": "fade-volume",
+													"objectClass": "Audio",
+													"sid": 977021668796666,
+													"parameters": {
+														"tag": "\"music\"",
+														"db": "-100",
+														"duration": "0.5",
+														"ending": "stop"
+													}
+												}
+											],
+											"sid": 298126039001701
+										}
+									]
 								}
 							]
 						}
@@ -928,9 +1076,54 @@
 									"parameters": {
 										"variable": "firstPlay"
 									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 436552434431643,
+									"parameters": {
+										"variable": "waitingForFirstPlay"
+									}
 								}
 							],
 							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 458223383141876,
+									"parameters": {
+										"audio-file": "aceleracion",
+										"loop": "not-looping",
+										"volume": "10",
+										"tag-optional": "\"start\""
+									}
+								},
+								{
+									"id": "add-tremolo-effect",
+									"objectClass": "Audio",
+									"sid": 727339157090586,
+									"parameters": {
+										"tag": "\"start\"",
+										"frequency": "-27",
+										"mix": "21"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "Logo",
+									"sid": 786830436759493,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								},
+								{
+									"id": "set-visible",
+									"objectClass": "sfText",
+									"sid": 527330904806028,
+									"parameters": {
+										"visibility": "visible"
+									}
+								},
 								{
 									"id": "set-boolean-eventvar",
 									"objectClass": "System",
@@ -994,6 +1187,14 @@
 										"expression": "sfText.for",
 										"comparison": 0,
 										"value": "\"tuto\""
+									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 324796160177577,
+									"parameters": {
+										"variable": "waitingForFirstPlay"
 									}
 								}
 							],
@@ -1325,16 +1526,33 @@
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 857261716754709,
+					"children": [
 						{
-							"callFunction": "ChangeLane",
-							"sid": 263458701480682,
-							"parameters": [
-								"-1"
-							]
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 224172930901590,
+									"parameters": {
+										"variable": "playing"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "ChangeLane",
+									"sid": 979698113111939,
+									"parameters": [
+										"-1"
+									]
+								}
+							],
+							"sid": 429988698787217
 						}
 					],
-					"sid": 857261716754709,
 					"isOrBlock": true
 				},
 				{
@@ -1370,16 +1588,33 @@
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 888924020169842,
+					"children": [
 						{
-							"callFunction": "ChangeLane",
-							"sid": 975081935174708,
-							"parameters": [
-								"1"
-							]
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 477092360125996,
+									"parameters": {
+										"variable": "playing"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "ChangeLane",
+									"sid": 365078041279803,
+									"parameters": [
+										"1"
+									]
+								}
+							],
+							"sid": 820450364208112
 						}
 					],
-					"sid": 888924020169842,
 					"isOrBlock": true
 				},
 				{
@@ -1423,13 +1658,30 @@
 							}
 						}
 					],
-					"actions": [
+					"actions": [],
+					"sid": 841259851707202,
+					"children": [
 						{
-							"callFunction": "Jump",
-							"sid": 837296662117204
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 122628890255001,
+									"parameters": {
+										"variable": "playing"
+									}
+								}
+							],
+							"actions": [
+								{
+									"callFunction": "Jump",
+									"sid": 463991599540958
+								}
+							],
+							"sid": 231527461245274
 						}
 					],
-					"sid": 841259851707202,
 					"isOrBlock": true
 				},
 				{

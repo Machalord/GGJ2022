@@ -1775,6 +1775,41 @@
 					}
 				},
 				{
+					"type": "Logo",
+					"properties": {
+						"initially-visible": true,
+						"initial-animation": "Animation 1",
+						"initial-frame": 0,
+						"enable-collisions": true,
+						"live-preview": false
+					},
+					"uid": 51,
+					"instanceVariables": {},
+					"behaviors": {
+						"Tween": {
+							"properties": {
+								"enabled": true
+							}
+						}
+					},
+					"world": {
+						"x": 458,
+						"y": 42,
+						"width": 186,
+						"height": 66,
+						"originX": 0.5,
+						"originY": 0.5,
+						"color": [
+							1,
+							1,
+							1,
+							1
+						],
+						"angle": 0,
+						"zElevation": 0
+					}
+				},
+				{
 					"type": "sfText",
 					"properties": {
 						"text": "0",
@@ -1789,7 +1824,7 @@
 						"horizontal-alignment": "left",
 						"vertical-alignment": "center",
 						"wrapping": "word",
-						"initially-visible": true,
+						"initially-visible": false,
 						"origin": "center"
 					},
 					"uid": 39,
@@ -1860,7 +1895,7 @@
 						"horizontal-alignment": "left",
 						"vertical-alignment": "center",
 						"wrapping": "word",
-						"initially-visible": true,
+						"initially-visible": false,
 						"origin": "center"
 					},
 					"uid": 41,
@@ -1931,7 +1966,7 @@
 						"horizontal-alignment": "left",
 						"vertical-alignment": "center",
 						"wrapping": "word",
-						"initially-visible": true,
+						"initially-visible": false,
 						"origin": "center"
 					},
 					"uid": 42,
@@ -1990,7 +2025,7 @@
 				{
 					"type": "sfText",
 					"properties": {
-						"text": ".-Use WASD / ARROW KEYS / Gamepad D-Pad to Move\n.-Use SPACE BAR/ W KEY / A Button to Jump\n\nPress Jump to Play",
+						"text": ".-Use WASD / ARROW KEYS / Gamepad D-Pad to Move\n.-Use SPACE BAR/ W KEY / UP KEY / A Button to Jump\n\nPress Jump to Play",
 						"enable-bbcode": true,
 						"character-width": 11,
 						"character-height": 16,
@@ -2042,9 +2077,9 @@
 						}
 					},
 					"world": {
-						"x": 160,
-						"y": 110,
-						"width": 216,
+						"x": 158,
+						"y": 122,
+						"width": 268,
 						"height": 96,
 						"originX": 0.5,
 						"originY": 0.5,
@@ -2052,7 +2087,7 @@
 							1,
 							1,
 							1,
-							1
+							0
 						],
 						"angle": 0,
 						"zElevation": 1
