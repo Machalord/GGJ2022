@@ -18,7 +18,12 @@
 			"sid": 356065658101045
 		}
 	],
-	"effectTypes": [],
+	"effectTypes": [
+		{
+			"effectId": "hsladjust",
+			"name": "AdjustHSL"
+		}
+	],
 	"animations": {
 		"items": [
 			{

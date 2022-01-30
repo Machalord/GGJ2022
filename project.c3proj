@@ -9,7 +9,7 @@
 		{
 			"type": "plugin",
 			"id": "Camera3D",
-			"name": "Cámara 3D",
+			"name": "3D camera",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -17,7 +17,7 @@
 		{
 			"type": "plugin",
 			"id": "Shape3D",
-			"name": "Forma 3D",
+			"name": "3D shape",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -25,7 +25,7 @@
 		{
 			"type": "plugin",
 			"id": "Keyboard",
-			"name": "Teclado",
+			"name": "Keyboard",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -41,7 +41,7 @@
 		{
 			"type": "plugin",
 			"id": "TiledBg",
-			"name": "Fondo en mosaico",
+			"name": "Tiled Background",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -57,7 +57,7 @@
 		{
 			"type": "plugin",
 			"id": "Touch",
-			"name": "Control táctil",
+			"name": "Touch",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -65,7 +65,7 @@
 		{
 			"type": "plugin",
 			"id": "gamepad",
-			"name": "Mando",
+			"name": "Gamepad",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -73,7 +73,7 @@
 		{
 			"type": "plugin",
 			"id": "Spritefont2",
-			"name": "Fuente Sprite",
+			"name": "Sprite font",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -81,7 +81,7 @@
 		{
 			"type": "plugin",
 			"id": "LocalStorage",
-			"name": "Almacenamiento local",
+			"name": "Local storage",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -89,7 +89,7 @@
 		{
 			"type": "plugin",
 			"id": "Particles",
-			"name": "Partículas",
+			"name": "Particles",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -105,7 +105,7 @@
 		{
 			"type": "behavior",
 			"id": "Tween",
-			"name": "Tween (interpolación)",
+			"name": "Tween",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -113,7 +113,7 @@
 		{
 			"type": "behavior",
 			"id": "Timer",
-			"name": "Temporizador",
+			"name": "Timer",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -121,15 +121,15 @@
 		{
 			"type": "behavior",
 			"id": "Bullet",
-			"name": "Bala",
+			"name": "Bullet",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
 		},
 		{
 			"type": "effect",
-			"id": "blurvertical",
-			"name": "Desenfocar vertical",
+			"id": "hsladjust",
+			"name": "Adjust HSL",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false
@@ -137,7 +137,7 @@
 		{
 			"type": "effect",
 			"id": "water",
-			"name": "Agua",
+			"name": "Water",
 			"author": "Viktor Korsun",
 			"version": "r280",
 			"bundled": false
@@ -145,7 +145,7 @@
 		{
 			"type": "effect",
 			"id": "difference",
-			"name": "Diferencia",
+			"name": "Difference",
 			"author": "Scirra",
 			"version": "r280",
 			"bundled": false

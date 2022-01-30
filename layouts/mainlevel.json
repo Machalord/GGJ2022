@@ -742,13 +742,6 @@
 					"uid": 2,
 					"instanceVariables": {},
 					"behaviors": {},
-					"effects": {
-						"BlurVertical": {
-							"parameters": {
-								"intensity": 0.1
-							}
-						}
-					},
 					"world": {
 						"x": 12,
 						"y": 4,
@@ -1365,6 +1358,15 @@
 							}
 						}
 					},
+					"effects": {
+						"AdjustHSL": {
+							"parameters": {
+								"hue": 0,
+								"saturation": 1,
+								"luminosity": 1
+							}
+						}
+					},
 					"sceneGraphData": {
 						"parent-uid": 17,
 						"uid": 8,
@@ -1435,6 +1437,15 @@
 						"Tween": {
 							"properties": {
 								"enabled": true
+							}
+						}
+					},
+					"effects": {
+						"AdjustHSL": {
+							"parameters": {
+								"hue": 0,
+								"saturation": 1,
+								"luminosity": 1
 							}
 						}
 					},
@@ -1652,7 +1663,7 @@
 						}
 					},
 					"world": {
-						"x": 6,
+						"x": -4,
 						"y": 92,
 						"width": 16,
 						"height": 32,
@@ -1665,7 +1676,7 @@
 							1
 						],
 						"angle": 0,
-						"zElevation": 0
+						"zElevation": 9
 					}
 				},
 				{

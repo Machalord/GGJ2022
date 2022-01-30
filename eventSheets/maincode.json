@@ -228,28 +228,6 @@
 							}
 						},
 						{
-							"id": "wait",
-							"objectClass": "System",
-							"sid": 774868660144571,
-							"parameters": {
-								"seconds": "0.3"
-							}
-						},
-						{
-							"callFunction": "CreateGround",
-							"sid": 513635134014894,
-							"parameters": [
-								"\"left\""
-							]
-						},
-						{
-							"callFunction": "CreateGround",
-							"sid": 300558035981091,
-							"parameters": [
-								"\"right\""
-							]
-						},
-						{
 							"id": "stop",
 							"objectClass": "Audio",
 							"sid": 952992742757932,
@@ -275,6 +253,15 @@
 								"loop": "looping",
 								"volume": "-18",
 								"tag-optional": "\"music\""
+							}
+						},
+						{
+							"id": "set-position-to-another-object",
+							"objectClass": "PlayerArrow",
+							"sid": 378069211266078,
+							"parameters": {
+								"object": "PlayerCollision",
+								"image-point-optional": "0"
 							}
 						}
 					],
@@ -398,7 +385,67 @@
 									}
 								}
 							],
-							"sid": 230527266741920
+							"sid": 230527266741920,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 325821825962594,
+											"parameters": {
+												"object": "PlayerBillboard",
+												"expression": "PlayerBillboard.type",
+												"comparison": 0,
+												"value": "PlayerCollision.type"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-effect-parameter",
+											"objectClass": "PlayerBillboard",
+											"sid": 416912146792446,
+											"parameters": {
+												"effect": "\"AdjustHSL\"",
+												"parameter-index": "0",
+												"value": "random(0,100)"
+											}
+										}
+									],
+									"sid": 693599603695044
+								}
+							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [],
+							"actions": [
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 864868724050261,
+									"parameters": {
+										"seconds": "0.3"
+									}
+								},
+								{
+									"callFunction": "CreateGround",
+									"sid": 970097485902674,
+									"parameters": [
+										"\"left\""
+									]
+								},
+								{
+									"callFunction": "CreateGround",
+									"sid": 729111548996339,
+									"parameters": [
+										"\"right\""
+									]
+								}
+							],
+							"sid": 838354792007258
 						}
 					]
 				},
@@ -4430,6 +4477,16 @@
 					"sid": 259493541377754,
 					"children": [
 						{
+							"eventType": "variable",
+							"name": "nextType",
+							"type": "string",
+							"initialValue": "",
+							"comment": "",
+							"isStatic": false,
+							"isConstant": false,
+							"sid": 575081145824774
+						},
+						{
 							"eventType": "block",
 							"conditions": [
 								{
@@ -4445,19 +4502,6 @@
 								}
 							],
 							"actions": [
-								{
-									"id": "create-object",
-									"objectClass": "System",
-									"sid": 900364129044888,
-									"disabled": true,
-									"parameters": {
-										"object-to-create": "ParticleExplosion",
-										"layer": "0",
-										"x": "PlayerBillboard.X",
-										"y": "PlayerBillboard.Y",
-										"create-hierarchy": false
-									}
-								},
 								{
 									"id": "stop-all-tweens",
 									"objectClass": "PlayerCollision",
@@ -4521,6 +4565,55 @@
 									"isStatic": false,
 									"isConstant": false,
 									"sid": 471103689946339
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "compare-instance-variable",
+											"objectClass": "PlayerBillboard",
+											"sid": 808295543606772,
+											"parameters": {
+												"instance-variable": "type",
+												"comparison": 0,
+												"value": "\"left\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 350337661970600,
+											"parameters": {
+												"variable": "nextType",
+												"value": "\"right\""
+											}
+										}
+									],
+									"sid": 707614860452617
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "else",
+											"objectClass": "System",
+											"sid": 874037869323428
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 163445302993975,
+											"parameters": {
+												"variable": "nextType",
+												"value": "\"left\""
+											}
+										}
+									],
+									"sid": 351063597873613
 								},
 								{
 									"eventType": "block",
@@ -4649,6 +4742,183 @@
 									"sid": 358087601127381
 								}
 							]
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 994436015114039,
+									"parameters": {
+										"object": "PlayerBillboard",
+										"expression": "PlayerBillboard.type",
+										"comparison": 0,
+										"value": "nextType"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "destroy",
+									"objectClass": "PlayerBillboard",
+									"sid": 858883011846315
+								},
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 774027840061317,
+									"parameters": {
+										"audio-file": "explosion",
+										"loop": "not-looping",
+										"volume": "0",
+										"tag-optional": "\"exp\""
+									}
+								}
+							],
+							"sid": 909617628141874,
+							"children": [
+								{
+									"eventType": "comment",
+									"text": "The direction each particle will move towards."
+								},
+								{
+									"eventType": "variable",
+									"name": "AngleOfMotion",
+									"type": "number",
+									"initialValue": "0",
+									"comment": "",
+									"isStatic": false,
+									"isConstant": false,
+									"sid": 122761352332864
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "repeat",
+											"objectClass": "System",
+											"sid": 960233857474555,
+											"parameters": {
+												"count": "100"
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-eventvar-value",
+											"objectClass": "System",
+											"sid": 326997667263280,
+											"parameters": {
+												"variable": "AngleOfMotion",
+												"value": "random(270, 360)"
+											}
+										},
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 469849393581332,
+											"parameters": {
+												"object-to-create": "Explosion",
+												"layer": "\"World\"",
+												"x": "PlayerBillboard.X + 20 + cos(AngleOfMotion) * 4",
+												"y": "PlayerBillboard.Y + sin(AngleOfMotion) * 4",
+												"create-hierarchy": false
+											}
+										},
+										{
+											"id": "set-size",
+											"objectClass": "Explosion",
+											"sid": 336928277774203,
+											"parameters": {
+												"width": "Self.Width * random(0.5,1.5)",
+												"height": "Self.Height * random(0.5,1.5)"
+											}
+										},
+										{
+											"id": "set-angle-of-motion",
+											"objectClass": "Explosion",
+											"sid": 522177274929384,
+											"behaviorType": "Bullet",
+											"parameters": {
+												"angle": "random(140,220)"
+											}
+										},
+										{
+											"id": "set-speed",
+											"objectClass": "Explosion",
+											"sid": 819205146373975,
+											"behaviorType": "Bullet",
+											"parameters": {
+												"speed": "random(50,100)"
+											}
+										},
+										{
+											"id": "set-angle",
+											"objectClass": "Explosion",
+											"sid": 166833726538628,
+											"parameters": {
+												"angle": "random(0, 360)"
+											}
+										},
+										{
+											"type": "comment",
+											"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "Explosion",
+											"sid": 208630007946030,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"Spread\"",
+												"property": "position",
+												"end-x": "Self.X + cos(AngleOfMotion) * random(32, 40)",
+												"end-y": "Self.Y + sin(AngleOfMotion) * random(32, 40)",
+												"time": "0.6",
+												"ease": "easeoutsine",
+												"destroy-on-complete": "no",
+												"loop": "no",
+												"ping-pong": "no"
+											}
+										},
+										{
+											"id": "tween-one-property",
+											"objectClass": "Explosion",
+											"sid": 194675433759944,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"Ascend\"",
+												"property": "offsetZElevation",
+												"end-value": "random(20, 40)",
+												"time": "0.6",
+												"ease": "easeoutsine",
+												"destroy-on-complete": "no",
+												"loop": "yes",
+												"ping-pong": "no"
+											}
+										},
+										{
+											"id": "tween-two-properties",
+											"objectClass": "Explosion",
+											"sid": 204099475318293,
+											"behaviorType": "Tween",
+											"parameters": {
+												"tags": "\"SelfDestroy\"",
+												"property": "size",
+												"end-x": "0",
+												"end-y": "0",
+												"time": "0.6",
+												"ease": "easeinsine",
+												"destroy-on-complete": "yes",
+												"loop": "no",
+												"ping-pong": "no"
+											}
+										}
+									],
+									"sid": 869177371250756
+								}
+							]
 						}
 					]
 				},
@@ -4706,9 +4976,9 @@
 				{
 					"id": "on-key-pressed",
 					"objectClass": "Keyboard",
-					"sid": 859692886045885,
+					"sid": 728698619404316,
 					"parameters": {
-						"key": 82
+						"key": 67
 					}
 				}
 			],
@@ -4730,9 +5000,160 @@
 						"variable": "timeBest",
 						"value": "0"
 					}
+				},
+				{
+					"callFunction": "GameOver",
+					"sid": 794711256611289
 				}
 			],
 			"sid": 295669871289358
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 700071301764878,
+					"parameters": {
+						"key": 82
+					}
+				}
+			],
+			"actions": [
+				{
+					"callFunction": "GameOver",
+					"sid": 218223671044048
+				}
+			],
+			"sid": 608702765726557
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 268291839651073,
+					"parameters": {
+						"key": 80
+					}
+				},
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 671513429048502,
+					"parameters": {
+						"key": 9
+					}
+				},
+				{
+					"id": "on-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 227026038564878,
+					"parameters": {
+						"key": 27
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-group-active",
+					"objectClass": "System",
+					"sid": 720035510108527,
+					"parameters": {
+						"group-name": "\"Controls\"",
+						"state": "toggle-active"
+					}
+				}
+			],
+			"sid": 561344270220675,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-two-values",
+							"objectClass": "System",
+							"sid": 581034941034818,
+							"parameters": {
+								"first-value": "timescale",
+								"comparison": 0,
+								"second-value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 651003804564098,
+							"parameters": {
+								"time-scale": "1"
+							}
+						},
+						{
+							"id": "set-paused",
+							"objectClass": "Audio",
+							"sid": 273629558348208,
+							"parameters": {
+								"tag": "\"music\"",
+								"state": "resume"
+							}
+						},
+						{
+							"id": "set-paused",
+							"objectClass": "Audio",
+							"sid": 487195915301119,
+							"parameters": {
+								"tag": "\"musicFast\"",
+								"state": "resume"
+							}
+						}
+					],
+					"sid": 350884297813996
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "else",
+							"objectClass": "System",
+							"sid": 140990749967698
+						}
+					],
+					"actions": [
+						{
+							"id": "set-time-scale",
+							"objectClass": "System",
+							"sid": 910960599777680,
+							"parameters": {
+								"time-scale": "0"
+							}
+						},
+						{
+							"id": "set-paused",
+							"objectClass": "Audio",
+							"sid": 381152137323120,
+							"parameters": {
+								"tag": "\"music\"",
+								"state": "pause"
+							}
+						},
+						{
+							"id": "set-paused",
+							"objectClass": "Audio",
+							"sid": 319828887777480,
+							"parameters": {
+								"tag": "\"musicFast\"",
+								"state": "pause"
+							}
+						}
+					],
+					"sid": 951763389665563
+				}
+			],
+			"isOrBlock": true
 		}
 	],
 	"sid": 209627101559036
