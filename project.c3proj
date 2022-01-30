@@ -1,7 +1,7 @@
 {
 	"projectFormatVersion": 1,
 	"savedWithRelease": 28000,
-	"name": "Infinite Duality",
+	"name": "Infinite Kart Racer Template",
 	"runtime": "c3",
 	"useWorker": "auto",
 	"bundleAddons": false,
@@ -187,7 +187,8 @@
 			"Pared",
 			"Audio",
 			"Fire",
-			"Spark"
+			"Spark",
+			"Explosion"
 		],
 		"subfolders": []
 	},
@@ -246,6 +247,11 @@
 					"name": "aceleracion2.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 679737891714364
+				},
+				{
+					"name": "explosion.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 817594958716202
 				}
 			],
 			"subfolders": []
