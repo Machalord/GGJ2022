@@ -853,6 +853,17 @@
 												"variable": "GroundSpeed",
 												"value": "max(groundSpeedBASE,currentDifficulty+1)"
 											}
+										},
+										{
+											"id": "play",
+											"objectClass": "Audio",
+											"sid": 881443707206903,
+											"parameters": {
+												"audio-file": "festejo",
+												"loop": "not-looping",
+												"volume": "0",
+												"tag-optional": "\"\""
+											}
 										}
 									],
 									"sid": 332304836611902,
@@ -885,6 +896,312 @@
 												}
 											],
 											"sid": 298126039001701
+										},
+										{
+											"eventType": "variable",
+											"name": "AngleOfMotion",
+											"type": "number",
+											"initialValue": "0",
+											"comment": "",
+											"isStatic": false,
+											"isConstant": false,
+											"sid": 937564143573750
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 437724156566361,
+													"disabled": true,
+													"parameters": {
+														"object": "Ground",
+														"expression": "Ground.type",
+														"comparison": 0,
+														"value": "\"left\""
+													}
+												}
+											],
+											"actions": [],
+											"sid": 685633309791953,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "repeat",
+															"objectClass": "System",
+															"sid": 159589867320670,
+															"parameters": {
+																"count": "50"
+															}
+														}
+													],
+													"actions": [
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 219708303600146,
+															"parameters": {
+																"variable": "AngleOfMotion",
+																"value": "random(0, 360)"
+															}
+														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 364025206484063,
+															"parameters": {
+																"object-to-create": "Paper",
+																"layer": "\"World\"",
+																"x": "500 + cos(AngleOfMotion) * 4",
+																"y": "90 - 120 + sin(AngleOfMotion) * 4",
+																"create-hierarchy": false
+															}
+														},
+														{
+															"id": "set-effect-parameter",
+															"objectClass": "Paper",
+															"sid": 670654720250288,
+															"parameters": {
+																"effect": "\"AdjustHSL\"",
+																"parameter-index": "0",
+																"value": "random(0,100)"
+															}
+														},
+														{
+															"id": "set-angle-of-motion",
+															"objectClass": "Paper",
+															"sid": 634210435885360,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"angle": "90"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "Paper",
+															"sid": 909985890462914,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "random(10,50)"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "Paper",
+															"sid": 691510381439271,
+															"parameters": {
+																"angle": "random(0, 360)"
+															}
+														},
+														{
+															"type": "comment",
+															"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
+														},
+														{
+															"id": "tween-two-properties",
+															"objectClass": "Paper",
+															"sid": 367950324944816,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"Spread\"",
+																"property": "position",
+																"end-x": "Self.X + cos(AngleOfMotion) * random(100, 200)",
+																"end-y": "Self.Y + sin(AngleOfMotion) * random(100, 200)",
+																"time": "2",
+																"ease": "easeoutsine",
+																"destroy-on-complete": "no",
+																"loop": "no",
+																"ping-pong": "no"
+															}
+														},
+														{
+															"id": "tween-one-property",
+															"objectClass": "Paper",
+															"sid": 152903276673058,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"Ascend\"",
+																"property": "offsetZElevation",
+																"end-value": "random(10,200)",
+																"time": "2",
+																"ease": "easeinsine",
+																"destroy-on-complete": "no",
+																"loop": "yes",
+																"ping-pong": "no"
+															}
+														},
+														{
+															"id": "tween-two-properties",
+															"objectClass": "Paper",
+															"sid": 215189438924316,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"SelfDestroy\"",
+																"property": "size",
+																"end-x": "0",
+																"end-y": "0",
+																"time": "2",
+																"ease": "easeinsine",
+																"destroy-on-complete": "yes",
+																"loop": "no",
+																"ping-pong": "no"
+															}
+														},
+														{
+															"id": "set-eventvar-value",
+															"objectClass": "System",
+															"sid": 432399655757707,
+															"parameters": {
+																"variable": "AngleOfMotion",
+																"value": "random(0, 360)"
+															}
+														},
+														{
+															"id": "create-object",
+															"objectClass": "System",
+															"sid": 201236554085512,
+															"parameters": {
+																"object-to-create": "Paper",
+																"layer": "\"World\"",
+																"x": "500 + cos(AngleOfMotion) * 4",
+																"y": "244 +120 + sin(AngleOfMotion) * 4",
+																"create-hierarchy": false
+															}
+														},
+														{
+															"id": "set-effect-parameter",
+															"objectClass": "Paper",
+															"sid": 512050988096635,
+															"parameters": {
+																"effect": "\"AdjustHSL\"",
+																"parameter-index": "0",
+																"value": "random(0,100)"
+															}
+														},
+														{
+															"id": "set-angle-of-motion",
+															"objectClass": "Paper",
+															"sid": 969190901148799,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"angle": "270"
+															}
+														},
+														{
+															"id": "set-speed",
+															"objectClass": "Paper",
+															"sid": 907884795992314,
+															"behaviorType": "Bullet",
+															"parameters": {
+																"speed": "random(10,50)"
+															}
+														},
+														{
+															"id": "set-angle",
+															"objectClass": "Paper",
+															"sid": 620550204032067,
+															"parameters": {
+																"angle": "random(0, 360)"
+															}
+														},
+														{
+															"type": "comment",
+															"text": "How long it takes for the dust to move up and shrink is slightly randomized, resulting in a more dynamic composition."
+														},
+														{
+															"id": "tween-two-properties",
+															"objectClass": "Paper",
+															"sid": 137058493818764,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"Spread\"",
+																"property": "position",
+																"end-x": "Self.X + cos(AngleOfMotion) * random(100, 200)",
+																"end-y": "Self.Y + sin(AngleOfMotion) * random(100, 200)",
+																"time": "2",
+																"ease": "easeoutsine",
+																"destroy-on-complete": "no",
+																"loop": "no",
+																"ping-pong": "no"
+															}
+														},
+														{
+															"id": "tween-one-property",
+															"objectClass": "Paper",
+															"sid": 321507460143547,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"Ascend\"",
+																"property": "offsetZElevation",
+																"end-value": "random(10,200)",
+																"time": "2",
+																"ease": "easeinsine",
+																"destroy-on-complete": "no",
+																"loop": "yes",
+																"ping-pong": "no"
+															}
+														},
+														{
+															"id": "tween-two-properties",
+															"objectClass": "Paper",
+															"sid": 952286811940832,
+															"behaviorType": "Tween",
+															"parameters": {
+																"tags": "\"SelfDestroy\"",
+																"property": "size",
+																"end-x": "0",
+																"end-y": "0",
+																"time": "2",
+																"ease": "easeinsine",
+																"destroy-on-complete": "yes",
+																"loop": "no",
+																"ping-pong": "no"
+															}
+														}
+													],
+													"sid": 290609064558695
+												}
+											]
+										},
+										{
+											"eventType": "block",
+											"conditions": [
+												{
+													"id": "pick-by-comparison",
+													"objectClass": "System",
+													"sid": 350417127622086,
+													"disabled": true,
+													"parameters": {
+														"object": "Ground",
+														"expression": "Ground.type",
+														"comparison": 0,
+														"value": "\"right\""
+													}
+												}
+											],
+											"actions": [],
+											"sid": 832498799597940,
+											"children": [
+												{
+													"eventType": "block",
+													"conditions": [
+														{
+															"id": "repeat",
+															"objectClass": "System",
+															"sid": 567867452442989,
+															"parameters": {
+																"count": "50"
+															}
+														}
+													],
+													"actions": [],
+													"sid": 233487026345784,
+													"disabled": true
+												}
+											]
 										}
 									]
 								}

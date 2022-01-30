@@ -206,7 +206,8 @@
 			"People3",
 			"People4",
 			"People5",
-			"People6"
+			"People6",
+			"Paper"
 		],
 		"subfolders": []
 	},
@@ -272,6 +273,11 @@
 					"name": "explosion.webm",
 					"type": "audio/webm; codecs=opus",
 					"sid": 817594958716202
+				},
+				{
+					"name": "festejo.webm",
+					"type": "audio/webm; codecs=opus",
+					"sid": 757951183744558
 				}
 			],
 			"subfolders": []
