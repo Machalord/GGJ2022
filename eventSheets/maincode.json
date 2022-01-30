@@ -146,6 +146,16 @@
 			"sid": 268946990533067
 		},
 		{
+			"eventType": "variable",
+			"name": "firstPlay",
+			"type": "boolean",
+			"initialValue": "true",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 279964427837427
+		},
+		{
 			"eventType": "group",
 			"disabled": false,
 			"title": "Camera",
@@ -200,15 +210,6 @@
 							"parameters": {
 								"variable": "currentTimeLoaded",
 								"value": "false"
-							}
-						},
-						{
-							"id": "set-boolean-eventvar",
-							"objectClass": "System",
-							"sid": 728276928579691,
-							"parameters": {
-								"variable": "playing",
-								"value": "true"
 							}
 						},
 						{
@@ -267,6 +268,111 @@
 					],
 					"sid": 508562661280596,
 					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 700454469900599,
+									"parameters": {
+										"variable": "firstPlay"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 188305748462180,
+									"parameters": {
+										"variable": "playing",
+										"value": "false"
+									}
+								}
+							],
+							"sid": 257823580539170
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "else",
+									"objectClass": "System",
+									"sid": 146831370994721
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 944964531250721,
+									"parameters": {
+										"variable": "playing",
+										"value": "true"
+									}
+								}
+							],
+							"sid": 913618568043416,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "pick-by-comparison",
+											"objectClass": "System",
+											"sid": 162034384857034,
+											"parameters": {
+												"object": "sfText",
+												"expression": "sfText.for",
+												"comparison": 0,
+												"value": "\"tuto\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "set-visible",
+											"objectClass": "sfText",
+											"sid": 114115575114670,
+											"parameters": {
+												"visibility": "invisible"
+											}
+										}
+									],
+									"sid": 645622802487870
+								},
+								{
+									"eventType": "block",
+									"conditions": [],
+									"actions": [
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 184583437860297,
+											"parameters": {
+												"seconds": "0.3"
+											}
+										},
+										{
+											"callFunction": "CreateGround",
+											"sid": 558469085335202,
+											"parameters": [
+												"\"left\""
+											]
+										},
+										{
+											"callFunction": "CreateGround",
+											"sid": 404634381690616,
+											"parameters": [
+												"\"right\""
+											]
+										}
+									],
+									"sid": 109533312439815
+								}
+							]
+						},
 						{
 							"eventType": "block",
 							"conditions": [
@@ -417,35 +523,6 @@
 									"sid": 693599603695044
 								}
 							]
-						},
-						{
-							"eventType": "block",
-							"conditions": [],
-							"actions": [
-								{
-									"id": "wait",
-									"objectClass": "System",
-									"sid": 864868724050261,
-									"parameters": {
-										"seconds": "0.3"
-									}
-								},
-								{
-									"callFunction": "CreateGround",
-									"sid": 970097485902674,
-									"parameters": [
-										"\"left\""
-									]
-								},
-								{
-									"callFunction": "CreateGround",
-									"sid": 729111548996339,
-									"parameters": [
-										"\"right\""
-									]
-								}
-							],
-							"sid": 838354792007258
 						}
 					]
 				},
@@ -801,6 +878,140 @@
 			"description": "",
 			"isActiveOnStart": true,
 			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-button-pressed",
+							"objectClass": "Gamepad",
+							"sid": 280530769044911,
+							"parameters": {
+								"gamepad": "0",
+								"button": "button-a"
+							}
+						},
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 363236108054793,
+							"parameters": {
+								"key": 87
+							}
+						},
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 667963136939818,
+							"parameters": {
+								"key": 32
+							}
+						},
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 320479009112230,
+							"parameters": {
+								"key": 38
+							}
+						}
+					],
+					"actions": [],
+					"sid": 334148894837364,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 831065233320731,
+									"parameters": {
+										"variable": "firstPlay"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 505534228325621,
+									"parameters": {
+										"variable": "playing",
+										"value": "true"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 638899516700800,
+									"parameters": {
+										"seconds": "0.02"
+									}
+								},
+								{
+									"id": "set-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 186642543862194,
+									"parameters": {
+										"variable": "firstPlay",
+										"value": "false"
+									}
+								},
+								{
+									"id": "wait",
+									"objectClass": "System",
+									"sid": 808009966191786,
+									"parameters": {
+										"seconds": "0.3"
+									}
+								},
+								{
+									"callFunction": "CreateGround",
+									"sid": 545652116077631,
+									"parameters": [
+										"\"left\""
+									]
+								},
+								{
+									"callFunction": "CreateGround",
+									"sid": 342217685260170,
+									"parameters": [
+										"\"right\""
+									]
+								}
+							],
+							"sid": 828841938241391
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "pick-by-comparison",
+									"objectClass": "System",
+									"sid": 180785514927027,
+									"parameters": {
+										"object": "sfText",
+										"expression": "sfText.for",
+										"comparison": 0,
+										"value": "\"tuto\""
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-visible",
+									"objectClass": "sfText",
+									"sid": 594495552227481,
+									"parameters": {
+										"visibility": "invisible"
+									}
+								}
+							],
+							"sid": 687658356754004
+						}
+					],
+					"isOrBlock": true
+				},
 				{
 					"eventType": "comment",
 					"text": "The initial X any Y positions of a touch interaction."
@@ -1230,19 +1441,7 @@
 					"functionParameters": [],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [
-						{
-							"id": "play",
-							"objectClass": "Audio",
-							"sid": 948161046872964,
-							"parameters": {
-								"audio-file": "jump",
-								"loop": "not-looping",
-								"volume": "-15",
-								"tag-optional": "\"jump\""
-							}
-						}
-					],
+					"actions": [],
 					"sid": 612114602595076,
 					"children": [
 						{
@@ -1258,9 +1457,30 @@
 										"comparison": 0,
 										"value": "turn"
 									}
+								},
+								{
+									"id": "compare-boolean-eventvar",
+									"objectClass": "System",
+									"sid": 825237381536667,
+									"parameters": {
+										"variable": "firstPlay"
+									},
+									"isInverted": true
 								}
 							],
-							"actions": [],
+							"actions": [
+								{
+									"id": "play",
+									"objectClass": "Audio",
+									"sid": 864237572908832,
+									"parameters": {
+										"audio-file": "jump",
+										"loop": "not-looping",
+										"volume": "-15",
+										"tag-optional": "\"jump\""
+									}
+								}
+							],
 							"sid": 136487128967272,
 							"children": [
 								{
@@ -3039,7 +3259,7 @@
 			"eventType": "variable",
 			"name": "MAXLENGTH",
 			"type": "number",
-			"initialValue": "100",
+			"initialValue": "88",
 			"comment": "",
 			"isStatic": false,
 			"isConstant": false,
@@ -4473,7 +4693,17 @@
 					],
 					"eventType": "function-block",
 					"conditions": [],
-					"actions": [],
+					"actions": [
+						{
+							"id": "set-group-active",
+							"objectClass": "System",
+							"sid": 923280494423845,
+							"parameters": {
+								"group-name": "\"Controls\"",
+								"state": "toggle-active"
+							}
+						}
+					],
 					"sid": 259493541377754,
 					"children": [
 						{
